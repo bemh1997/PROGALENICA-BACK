@@ -46,7 +46,7 @@ const {
 
 
 // En config/database.js
-console.log('Modelos cargados:', Object.keys(sequelize.models));
+// console.log('Modelos cargados:', Object.keys(sequelize.models));
 
 // Relaciones
 Pedido.belongsTo(Paqueteria, { foreignKey: 'paqueteria_id' });
