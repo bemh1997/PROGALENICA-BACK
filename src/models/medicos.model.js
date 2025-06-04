@@ -2,29 +2,27 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Medico', {
-    id: {
+    id_medico: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true
     },
-    nombre: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    telefono: {
-      type: DataTypes.TEXT,
+    id_usuario: {
+      type: DataTypes.BIGINT,
+      unique: true,
       allowNull: false
     },
     cedula: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
     },
     especialidad: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
+    },
+    activo: {
+      type: DataTypes.BOOLEAN
     }
   }, {
-    timestamps: false,
-    tableName: 'medicos', 
+    tableName: 'medicos',
+    timestamps: false
   });
 };

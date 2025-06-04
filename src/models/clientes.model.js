@@ -1,58 +1,27 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, Sequelize } = require('sequelize');
 
-module.exports = (sequelize) => {
+module.exports = (sequelize) =>{ 
   sequelize.define('Cliente', {
-    id: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    nombre: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    telefono: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    codigo_postal: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    calle: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    numero_exterior: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    numero_interior: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    colonia: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    municipio: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    estado: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    genero: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    notas: {
-      type: DataTypes.TEXT,
-      allowNull: true
+  id_cliente: {
+    type: DataTypes.BIGINT,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  id_usuario: {
+    type: DataTypes.BIGINT,
+    unique: true,
+    references: {
+      model: 'usuarios',
+      key: 'id_usuario'
     }
-  }, {
-    timestamps: false,
-    tableName: 'clientes', 
-  });
+  },
+  genero: DataTypes.TEXT,
+  notas: DataTypes.TEXT,
+  activo: DataTypes.BOOLEAN
+}, {
+  tableName: 'clientes',
+  timestamps: false
+})
 };
+
+module.exports = Cliente;

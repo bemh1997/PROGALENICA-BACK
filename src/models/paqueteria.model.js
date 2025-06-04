@@ -2,17 +2,19 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Paqueteria', {
-    id: {
+    id_paqueteria: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true
     },
     nombre: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
+    },
+    activo: {
+      type: DataTypes.BOOLEAN
     }
   }, {
-    timestamps: false,
-    tableName: 'paqueterias', 
+    tableName: 'paqueterias',
+    timestamps: false
   });
 };

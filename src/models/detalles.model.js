@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Detallespedido', {
-    id: {
+    id_detalle_pedido: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true
@@ -16,9 +16,20 @@ module.exports = (sequelize) => {
     factura: {
       type: DataTypes.TEXT,
       unique: true
+    },
+    id_pedido: {
+      type: DataTypes.BIGINT,
+      allowNull: false
+    },
+    id_producto: {
+      type: DataTypes.BIGINT,
+      allowNull: false
+    },
+    activo: {
+      type: DataTypes.BOOLEAN
     }
   }, {
     timestamps: false,
-    tableName: 'detallespedido', 
+    tableName: 'detallespedido',
   });
 };

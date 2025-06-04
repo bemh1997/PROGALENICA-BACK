@@ -5,17 +5,15 @@ const path = require('path');
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = require('./env');
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false,
-  native: false,
-});
-
-
-// const sequelize = new Sequelize(DB_DEPLOY, {
-//   logging: false, // set to console.log to see the raw SQL queries
-//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+//   logging: false,
+//   native: false,
 // });
 
+const sequelize = new Sequelize(DB_DEPLOY, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+});
 const modelDefiners = [];
 
 fs.readdirSync(path.join(__dirname, '../models'))
@@ -34,14 +32,17 @@ let capsEntries = entries.map(([name, model]) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 const {
-  Paqueteria,
+  Usuario,
   Cliente,
-  Representante,
   Medico,
-  Producto,
-  Pedido,
-  Detallespedido,
   Administrador,
+  Representante,
+  Direccion,
+  Producto,
+  Paqueteria,
+  MetodoPago,
+  Pedido,
+  DetallePedido,
 } = sequelize.models;
 
 
@@ -49,13 +50,21 @@ const {
 // console.log('Modelos cargados:', Object.keys(sequelize.models));
 
 // Relaciones
-Pedido.belongsTo(Paqueteria, { foreignKey: 'paqueteria_id' });
-Pedido.belongsTo(Cliente, { foreignKey: 'cliente_id' });
-Pedido.belongsTo(Representante, { foreignKey: 'representante_id' });
-Pedido.belongsTo(Medico, { foreignKey: 'medico_id' });
+Cliente.belongsTo(Usuario, { foreignKey: 'id_usuario' });
+Medico.belongsTo(Usuario, { foreignKey: 'id_usuario' });
+Administrador.belongsTo(Usuario, { foreignKey: 'id_usuario' });
+Representante.belongsTo(Usuario, { foreignKey: 'id_usuario' });
 
-Detallespedido.belongsTo(Pedido, { foreignKey: 'pedido_id' });
-Detallespedido.belongsTo(Producto, { foreignKey: 'producto_id' });
+Direccion.belongsTo(Cliente, { foreignKey: 'id_cliente' });
+
+Pedido.belongsTo(Cliente, { foreignKey: 'id_cliente' });
+Pedido.belongsTo(Medico, { foreignKey: 'id_medico' });
+Pedido.belongsTo(Representante, { foreignKey: 'id_representante' });
+Pedido.belongsTo(Paqueteria, { foreignKey: 'id_paqueteria' });
+Pedido.belongsTo(MetodoPago, { foreignKey: 'id_metodo_pago' });
+
+DetallePedido.belongsTo(Pedido, { foreignKey: 'id_pedido' });
+DetallePedido.belongsTo(Producto, { foreignKey: 'id_producto' });
 
 module.exports = {
   ...sequelize.models,

@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Producto', {
-    id: {
+    id_producto: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true
@@ -22,7 +22,11 @@ module.exports = (sequelize) => {
     cantidad_real: {
       type: DataTypes.BIGINT,
       allowNull: false
-    }
+    },
+    activo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
   }, {
     timestamps: false,
     tableName: 'productos', 

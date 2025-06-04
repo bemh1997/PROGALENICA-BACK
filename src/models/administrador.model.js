@@ -2,33 +2,24 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Administrador', {
-    id: {
+    id_administrador: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true
     },
-    nombre: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    correo: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    telefono: {
-      type: DataTypes.TEXT,
+    id_usuario: {
+      type: DataTypes.BIGINT,
+      unique: true,
       allowNull: false
     },
     rol: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
     },
     activo: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
+      type: DataTypes.BOOLEAN
     }
   }, {
-    timestamps: false,
-    tableName: 'administrador', 
+    tableName: 'administradores',
+    timestamps: false
   });
 };

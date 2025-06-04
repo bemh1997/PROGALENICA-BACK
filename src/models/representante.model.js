@@ -2,25 +2,19 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Representante', {
-    id: {
+    id_representante: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true
     },
-    nombre: {
-      type: DataTypes.TEXT,
+    id_usuario: {
+      type: DataTypes.BIGINT,
+      unique: true,
       allowNull: false
     },
-    telefono: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    correo: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    }
+    activo: DataTypes.BOOLEAN
   }, {
-    timestamps: false,
-    tableName: 'representantes', 
+    tableName: 'representantes',
+    timestamps: false
   });
 };
