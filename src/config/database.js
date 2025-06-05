@@ -1,19 +1,18 @@
 const { Sequelize } = require('sequelize');
-// require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = require('./env');
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false,
-  native: false,
-});
-
-// const sequelize = new Sequelize(process.env.DB_DEPLOY, {
-//   dialect: 'postgres',
-//   logging: false, // o true si quieres ver queries en consola
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+//   logging: false,
+//   native: false,
 // });
+
+const sequelize = new Sequelize(process.env.DB_DEPLOY, {
+  dialect: 'postgres',
+  logging: false, // o true si quieres ver queries en consola
+});
 
 const modelDefiners = [];
 
