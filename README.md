@@ -2,6 +2,10 @@
 
 Este proyecto corresponde al backend de la aplicación **Progalenica**, una API RESTful desarrollada en Node.js con Express y Sequelize para la gestión de productos farmacéuticos, pedidos, clientes, médicos, representantes y paqueterías.
 
+## Imagen de la database 
+
+   ![Database](src/assets/database.png) 
+
 ## Tecnologías principales
 
 - **Node.js** y **Express** para el servidor y la gestión de rutas.

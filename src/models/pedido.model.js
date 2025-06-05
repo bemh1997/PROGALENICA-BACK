@@ -65,8 +65,8 @@ module.exports = (sequelize) => {
     id_metodo_pago: {
       type: DataTypes.BIGINT,
       references: {
-        model: 'metodos_pago', // Nombre de la tabla referenciada
-        key: 'id_metodo_pago' // Clave primaria de la tabla referenciada
+        model: 'metodo_pago', // <-- nombre correcto de la tabla
+        key: 'id_metodo_pago'
       }
     }, 
     activo: {
