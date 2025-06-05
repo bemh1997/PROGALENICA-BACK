@@ -15,6 +15,14 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    descripcion: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    laboratorio: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
     precio_unitario: {
       type: DataTypes.NUMERIC,
       allowNull: false

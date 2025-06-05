@@ -96,6 +96,8 @@ class ProductoController {
       const nuevoProducto = await Producto.create({
         nombre,
         codigo_barras,
+        descripcion,
+        laboratorio,
         precio_unitario,
         cantidad_real
       });
@@ -122,7 +124,7 @@ class ProductoController {
   static async updateProducto(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, codigo_barras, precio_unitario, cantidad_real } = req.body;
+      const { nombre, codigo_barras, precio_unitario, cantidad_real, descripcion, laboratorio } = req.body;
       
       const producto = await Producto.findByPk(id);
       
