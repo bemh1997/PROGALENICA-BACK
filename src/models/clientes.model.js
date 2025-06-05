@@ -17,7 +17,10 @@ module.exports = (sequelize) =>{
   },
   genero: DataTypes.TEXT,
   notas: DataTypes.TEXT,
-  activo: DataTypes.BOOLEAN
+  activo: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
+  },
 }, {
   tableName: 'clientes',
   timestamps: false

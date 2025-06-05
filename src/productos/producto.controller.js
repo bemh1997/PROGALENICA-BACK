@@ -70,7 +70,8 @@ class ProductoController {
               descripcion,
               laboratorio,
               precio_unitario, 
-              cantidad_real } = req.body;
+              cantidad_real,
+              imagen } = req.body;
       
       // Validaciones básicas
       if (!nombre || nombre.trim() === '') {
@@ -95,6 +96,12 @@ class ProductoController {
         });
       }
       
+      if (!descripcion || descripcion.trim() === '') {
+        return res.status(400).json({
+          success: false,
+          message: 'La descripción del producto es requerida'
+        });
+      }
       const nuevoProducto = await Producto.create({
         nombre,
         codigo_barras,
@@ -156,6 +163,12 @@ class ProductoController {
         return res.status(400).json({
           success: false,
           message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
+        });
+      }
+      if (descripcion !== undefined && (descripcion === null || descripcion.trim() === '')) {
+        return res.status(400).json({
+          success: false,
+          message: 'La descripción del producto no puede estar vacía'
         });
       }
       
