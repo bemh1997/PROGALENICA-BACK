@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
 
-const Usuario = sequelize.define('Usuario', {
+module.exports = (sequelize) => {
+  sequelize.define('Usuario', {
   id_usuario: {
     type: DataTypes.BIGINT,
     primaryKey: true,
@@ -29,6 +29,5 @@ const Usuario = sequelize.define('Usuario', {
 }, {
   tableName: 'usuarios',
   timestamps: false
-});
-
-module.exports = Usuario;
+})
+};
