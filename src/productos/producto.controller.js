@@ -96,7 +96,7 @@ class ProductoController {
         });
       }
       
-      if (!descripcion || descripcion.trim() === '') {
+      if (!descripcion ) {
         return res.status(400).json({
           success: false,
           message: 'La descripción del producto es requerida'
