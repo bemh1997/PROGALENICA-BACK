@@ -7,15 +7,20 @@ module.exports = (sequelize) => {
     primaryKey: true,
     autoIncrement: true
   },
-  nombre: DataTypes.TEXT,
-  apellido_paterno: DataTypes.TEXT,
+  nombre: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  apellido_paterno: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
   apellido_materno: DataTypes.TEXT,
   telefono: DataTypes.TEXT,
   rfc: DataTypes.TEXT,
-  correo: {
+  email: {
     type: DataTypes.TEXT,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   password: {
     type: DataTypes.TEXT,
