@@ -15,8 +15,11 @@ module.exports = (sequelize) =>{
       key: 'id_usuario'
     }
   },
-  genero: DataTypes.TEXT,
-  notas: DataTypes.TEXT,
+  genero: {
+    type: DataTypes.TEXT, 
+    allowNull: false
+  },
+  notas_adminstrativas: DataTypes.TEXT,
   activo: DataTypes.BOOLEAN
 }, {
   tableName: 'clientes',
