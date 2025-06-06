@@ -11,7 +11,8 @@ class ProductoController {
   static async getAllProductos(req, res) {
     try {
       const productos = await Producto.findAll({
-        order: [['nombre', 'ASC']]
+        order: [['nombre', 'ASC']],
+        where: {'activo': true}
       });
       
       res.status(200).json({
@@ -67,8 +68,16 @@ class ProductoController {
     try {
       const { nombre,
               codigo_barras, 
+              descripcion: {
+                presentacion,
+                dosis,
+                via_administracion,
+                descripcion
+              },
+              laboratorio,
               precio_unitario, 
-              cantidad_real } = req.body;
+              cantidad_real,
+              imagen } = req.body;
       
       // Validaciones básicas
       if (!nombre || nombre.trim() === '') {
@@ -93,11 +102,54 @@ class ProductoController {
         });
       }
       
+      if (!presentacion ) {
+        return res.status(400).json({
+          success: false,
+          message: 'La presentación del producto es requerida'
+        });
+      }
+
+      if (!presentacion ) {
+        return res.status(400).json({
+          success: false,
+          message: 'La presentación del producto es requerida'
+        });
+      }
+
+      if (!dosis ) {
+        return res.status(400).json({
+          success: false,
+          message: 'La dosis del producto es requerida'
+        });
+      }
+
+      if (!via_administracion ) {
+        return res.status(400).json({
+          success: false,
+          message: 'La vía de administración del producto es requerida'
+        });
+      }
+
+      if (!descripcion ) {
+        return res.status(400).json({
+          success: false,
+          message: 'La descripción del producto es requerida'
+        });
+      }
+
       const nuevoProducto = await Producto.create({
         nombre,
         codigo_barras,
+        descripcion: {
+                presentacion,
+                dosis,
+                via_administracion,
+                descripcion
+              },
+        laboratorio,
         precio_unitario,
-        cantidad_real
+        cantidad_real,
+        imagen
       });
       
       res.status(201).json({
@@ -122,7 +174,7 @@ class ProductoController {
   static async updateProducto(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, codigo_barras, precio_unitario, cantidad_real } = req.body;
+      const { nombre, codigo_barras, descripcion, laboratorio, precio_unitario, cantidad_real, imagen } = req.body;
       
       const producto = await Producto.findByPk(id);
       
@@ -154,12 +206,21 @@ class ProductoController {
           message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
         });
       }
+      if (descripcion !== undefined && (descripcion === null || descripcion.trim() === '')) {
+        return res.status(400).json({
+          success: false,
+          message: 'La descripción del producto no puede estar vacía'
+        });
+      }
       
       await producto.update({
         nombre: nombre !== undefined ? nombre : producto.nombre,
         codigo_barras: codigo_barras !== undefined ? codigo_barras : producto.codigo_barras,
+        descripcion: descripcion !== undefined ? descripcion : producto.descripcion,
+        laboratorio: laboratorio !== undefined ? laboratorio : producto.laboratorio,
         precio_unitario: precio_unitario !== undefined ? precio_unitario : producto.precio_unitario,
-        cantidad_real: cantidad_real !== undefined ? cantidad_real : producto.cantidad_real
+        cantidad_real: cantidad_real !== undefined ? cantidad_real : producto.cantidad_real,
+        imagen: imagen !== undefined ? imagen : producto.imagen
       });
       
       res.status(200).json({
@@ -194,7 +255,8 @@ class ProductoController {
         });
       }
       
-      await producto.destroy();
+      await producto.update({
+        activo : false})
       
       res.status(200).json({
         success: true,
@@ -208,6 +270,38 @@ class ProductoController {
       });
     }
   }
+  // /**
+  //  * Elimina un producto
+  //  * @param {Object} req - Objeto de solicitud Express
+  //  * @param {Object} res - Objeto de respuesta Express
+  //  */
+  // static async deleteProducto(req, res) {
+  //   try {
+  //     const { id } = req.params;
+      
+  //     const producto = await Producto.findByPk(id);
+      
+  //     if (!producto) {
+  //       return res.status(404).json({
+  //         success: false,
+  //         message: 'Producto no encontrado'
+  //       });
+  //     }
+      
+  //     await producto.destroy();
+      
+  //     res.status(200).json({
+  //       success: true,
+  //       message: 'Producto eliminado correctamente'
+  //     });
+  //   } catch (error) {
+  //     res.status(500).json({
+  //       success: false,
+  //       message: 'Error al eliminar el producto',
+  //       error: error.message
+  //     });
+  //   }
+  // }
 
   /**
    * Busca productos por nombre o código de barras

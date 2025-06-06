@@ -13,7 +13,13 @@ module.exports = (sequelize) => {
     },
     codigo_barras: {
       type: DataTypes.TEXT,
+    },
+    descripcion: {
+      type: DataTypes.JSON,
       allowNull: false
+    },
+    laboratorio: {
+      type: DataTypes.TEXT
     },
     precio_unitario: {
       type: DataTypes.NUMERIC,
@@ -22,6 +28,9 @@ module.exports = (sequelize) => {
     cantidad_real: {
       type: DataTypes.BIGINT,
       allowNull: false
+    },
+    imagen:{
+      type: DataTypes.TEXT
     },
     activo: {
       type: DataTypes.BOOLEAN,
