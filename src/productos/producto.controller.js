@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const { Producto } = require('../config/database.js');
+const capitalizeWords = require('../utils/capitalize.js').capitalizeWords;
 
 class ProductoController {
   /**
@@ -11,7 +12,7 @@ class ProductoController {
   static async getAllProductos(req, res) {
     try {
       const productos = await Producto.findAll({
-        order: [['nombre', 'ASC']],
+        order: [['id_producto', 'ASC']],
         where: {'activo': true}
       });
       
@@ -58,6 +59,40 @@ class ProductoController {
       });
     }
   }
+  
+  /**
+   * Obtiene un producto por su nombre
+   * @param {Object} req - Objeto de solicitud Express
+   * @param {Object} res - Objeto de respuesta Express
+   */
+  static async getProductoByNombre(req, res) {
+    try {
+      console.log("holis");
+      const { nombre } = req.params;
+
+      const producto = await Producto.findAll({ 
+        order: [['nombre', 'DESC']],
+        where: {'nombre': nombre, 'activo': true}
+       });
+
+      if (!producto) {
+        return res.status(404).json({
+          success: false,
+          message: 'Producto inexistente'
+        });
+      }
+      res.status(200).json({
+        success: true,
+        data: producto
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al obtener el producto',
+        error: error.message
+      });
+    }
+  }
 
   /**
    * Crea un nuevo producto
@@ -66,7 +101,7 @@ class ProductoController {
    */
   static async createProducto(req, res) {
     try {
-      const { nombre,
+      var { nombre,
               codigo_barras, 
               descripcion: {
                 presentacion,
@@ -79,11 +114,20 @@ class ProductoController {
               cantidad_real,
               imagen } = req.body;
       
+      nombre = capitalizeWords(nombre);
+
       // Validaciones básicas
       if (!nombre || nombre.trim() === '') {
         return res.status(400).json({
           success: false,
           message: 'El nombre del producto es requerido'
+        });
+      }
+
+      if (await Producto.findOne({ where: { nombre: nombre, laboratorio: laboratorio } })){
+        return res.status(400).json({
+          success: false,
+          message: 'El nombre del producto ya se encuentra registrado'
         });
       }
       
@@ -99,13 +143,6 @@ class ProductoController {
         return res.status(400).json({
           success: false,
           message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
-        });
-      }
-      
-      if (!presentacion ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La presentación del producto es requerida'
         });
       }
 
@@ -174,7 +211,19 @@ class ProductoController {
   static async updateProducto(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, codigo_barras, descripcion, laboratorio, precio_unitario, cantidad_real, imagen } = req.body;
+      var {
+        nombre,
+        codigo_barras,
+        descripcion:{
+          presentacion,
+          dosis,
+          via_administracion,
+          descripcion
+        },
+        laboratorio,
+        precio_unitario,
+        cantidad_real,
+        imagen } = req.body;
       
       const producto = await Producto.findByPk(id);
       
@@ -193,6 +242,7 @@ class ProductoController {
         });
       }
       
+      nombre = capitalizeWords(nombre);      
       if (precio_unitario !== undefined && (isNaN(precio_unitario) || precio_unitario < 0)) {
         return res.status(400).json({
           success: false,
@@ -206,21 +256,26 @@ class ProductoController {
           message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
         });
       }
-      if (descripcion !== undefined && (descripcion === null || descripcion.trim() === '')) {
-        return res.status(400).json({
-          success: false,
-          message: 'La descripción del producto no puede estar vacía'
-        });
-      }
+      // if (descripcion !== undefined && (descripcion === null || descripcion.trim() === '')) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La descripción del producto no puede estar vacía'
+      //   });
+      // }
       
       await producto.update({
-        nombre: nombre !== undefined ? nombre : producto.nombre,
-        codigo_barras: codigo_barras !== undefined ? codigo_barras : producto.codigo_barras,
-        descripcion: descripcion !== undefined ? descripcion : producto.descripcion,
-        laboratorio: laboratorio !== undefined ? laboratorio : producto.laboratorio,
-        precio_unitario: precio_unitario !== undefined ? precio_unitario : producto.precio_unitario,
-        cantidad_real: cantidad_real !== undefined ? cantidad_real : producto.cantidad_real,
-        imagen: imagen !== undefined ? imagen : producto.imagen
+        nombre,
+        codigo_barras,
+        descripcion: {
+                presentacion: presentacion? presentacion : producto.descripcion.presentacion,
+                dosis: dosis ? dosis: producto.descripcion.dosis,
+                via_administracion: via_administracion ? via_administracion : producto.descripcion.via_administracion,
+                descripcion: descripcion ? descripcion : producto.descripcion.descripcion
+              },
+        laboratorio,
+        precio_unitario,
+        cantidad_real,
+        imagen
       });
       
       res.status(200).json({
