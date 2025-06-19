@@ -1,0 +1,717 @@
+[
+    {
+        "nombre": "Fremalt® Myo-Inositol, D-chiro-inositol, Ácido fólico y Manganeso",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Sobres",
+            "dosis": "",
+            "via_administracion": "Oral",
+            "descripcion": "Polvo para reconstituir, caja con 30 sobres. Cero azúcar, apto para veganos"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Medinova Fluomizin® Cloruro de Decualinio",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Vaginal",
+            "descripcion": "Caja con 6 tabletas"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Recoverón® Ácido acexámico",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Granulado",
+            "dosis": "",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 10 sobres"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Tesiflex duo® Colágeno hidrolizado y colágeno tipo II",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Sobres",
+            "dosis": "11g",
+            "via_administracion": "Oral",
+            "descripcion": "Suplemento alimenticio. Polvo para reconstruir a base de colágeno hidrolizado, colágeno tipo II, vitamina C y D. Sabor naranja-piña, sin lactosa, sin gluten"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Tesiflex® Colágeno tipo II, calcio, magnesio y vitamina D",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "",
+            "via_administracion": "Oral",
+            "descripcion": "Suplemento alimenticio. Recomendado para hombres y mujeres a partir de los 19 años"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Cuyulid® Ácido aledrónico/ Colecalciferol",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "70mg/5600 UI",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 4 comprimidos e instructivo anexo"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Balbit® Olmesartán, Amlodipino, Hidrocloclorotiazida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "20mg, 5mg, 12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "Balbit® Olmesartán, Amlodipino, Hidrocloclorotiazida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "40mg, 5mg, 12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "tableta",
+            "dosis": "160mg, 12.5mg",
+            "via_administracion": "oral",
+            "descripcion": "Caja con 14 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "tableta",
+            "dosis": "160mg, 12.5mg",
+            "via_administracion": "oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "Norsat-duo® Olmesartán, Hidrocloclorotiazida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "tableta",
+            "dosis": "20mg, 12.5mg",
+            "via_administracion": "oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "SAARI Sitagliptina, Metformina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "tableta",
+            "dosis": "50mg, 850mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "SAARI Sitagliptina, Metformina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "tableta",
+            "dosis": "50mg, 850mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 56 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "SAARI Sitagliptina, Metformina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "tableta",
+            "dosis": "50mg, 1000mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 56 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "VIDIPEP Sitagliptina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "VIDIPEP Sitagliptina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "100mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "Avitosyn® Abiraterona",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "500mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 60 tabletas"
+        },
+        "laboratorio": "",
+        "imagen": "Synthon"
+    },
+    {
+        "nombre": "Apthon® Cinacalcet",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "30mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Bemetad® Pemetrexed",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "500mg",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja con frasco ámpula con liofilizado para solución para infusión"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Simbiva® Bevacizumab",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "100mg/4mL",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja de cartón con un frasco ámpula"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Simbiva® Bevacizumab",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "400mg/16mL",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja de cartón con un frasco ámpula"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Bilumiv® Bicalutamida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 14 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Bilumiv® Bicalutamida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Carenev® Sunitinib",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Cápsula",
+            "dosis": "12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 cápsulas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Carvicem® Escitalopram",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Carvicem® Escitalopram",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "20mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Datilev® Docetaxel",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "20mg/0.5mL",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja con frasco ámpula con 20mg/0.5mLy frasco ámpula con diluyente"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Datilev® Docetaxel",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "80mg/2mL",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja con frasco ámpula con 80mg/2mLy frasco ámpula con diluyente"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Doferel® Dutasterida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Cápsula",
+            "dosis": "0.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 cápsulas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Doferel® Dutasterida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Cápsula",
+            "dosis": "0.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 90 cápsulas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Doxelev® Acetato de Glatiramer",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "40mg/1mL",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja con 12 jeringas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Dozimev® Donepezilo",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Dozimev® Donepezilo",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Elomaziv® Bortezomib",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "3.5mg",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja con frasco con polvo liofilizado para reconstituir"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Fexilev® Gefitinib",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "250mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Forezol® Fluvoxamina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "100mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 15 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Forezol® Fluvoxamina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "100mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Gizacrel® Rasagilina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "1mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Leprezil® Levetiracetam",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "500mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Leprezil® Levetiracetam",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "500mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 60 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Lezomiv® Ácido zoledrónico",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "4mg/5mL",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja con 1 frasco ámpula con 5mL"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Magemiv® Anastrozol",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "1mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Matinev® Memantina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Matinev® Memantina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 56 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Matinev® Memantina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "20mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Nodutax® Exemestano",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "25mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 comprimidos"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Rifosar® Sevelámero",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "800mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con frasco con 180 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Rifosar-POS® Sevelámero",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Polvo",
+            "dosis": "2.4g",
+            "via_administracion": "Para suspensión",
+            "descripcion": "Caja con frasco con 60 sobres"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Ripizolnev® Aripiprazol",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 10 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Ripizolnev® Aripiprazol",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "30mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 10 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Ripizolnev® Aripiprazol",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "15mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 20 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Tamablan PF® Tamsulosina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "0.4mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas, liberación prolongada"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Trodis® Letrozol",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "2.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Clozapina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "100mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    },
+    {
+        "nombre": "Sicrep® Clozapina",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "100mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 50 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": ""
+    }
+]
