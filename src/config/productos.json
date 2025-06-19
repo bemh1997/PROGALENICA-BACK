@@ -1,19 +1,19 @@
 [
     {
-        "nombre": "Fremalt",
+        "nombre": "Fremalt® Myo-Inositol, D-chiro-inositol, Ácido fólico y Manganeso",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
             "presentacion": "Sobres",
             "dosis": "",
             "via_administracion": "Oral",
-            "descripcion": "Polvo para reconstituir a base de Myo-Inositol, D-chiro-inositol, Ácido fólico y Manganeso"
+            "descripcion": "Polvo para reconstituir, caja con 30 sobres. Cero azúcar, apto para veganos"
         },
         "laboratorio": "Armstrong",
         "imagen": ""
     },
     {
-        "nombre": "Cloruro de Decualinio",
+        "nombre": "Medinova Fluomizin® Cloruro de Decualinio",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -26,33 +26,59 @@
         "imagen": ""
     },
     {
-        "nombre": "Recoverón",
+        "nombre": "Recoverón® Ácido acexámico",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
-            "presentacion": "sobres",
+            "presentacion": "Granulado",
             "dosis": "",
-            "via_administracion": "oral",
+            "via_administracion": "Oral",
             "descripcion": "Caja con 10 sobres"
         },
         "laboratorio": "Armstrong",
         "imagen": ""
     },
     {
-        "nombre": "Tesiflex duo",
+        "nombre": "Tesiflex duo® Colágeno hidrolizado y colágeno tipo II",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
-            "presentacion": "sobres",
+            "presentacion": "Sobres",
             "dosis": "11g",
             "via_administracion": "Oral",
-            "descripcion": "Polvo para reconstruir a base de colágeno hidrolizado, colágeno tipo II, vitamina C y D"
+            "descripcion": "Suplemento alimenticio. Polvo para reconstruir a base de colágeno hidrolizado, colágeno tipo II, vitamina C y D. Sabor naranja-piña, sin lactosa, sin gluten"
         },
         "laboratorio": "Armstrong",
         "imagen": ""
     },
     {
-        "nombre": "Olmesartán, Amlodipino, Hidrocloclorotiazida",
+        "nombre": "Tesiflex® Colágeno tipo II, calcio, magnesio y vitamina D",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "",
+            "via_administracion": "Oral",
+            "descripcion": "Suplemento alimenticio. Recomendado para hombres y mujeres a partir de los 19 años"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Cuyulid® Ácido aledrónico/ Colecalciferol",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "70mg/5600 UI",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 4 comprimidos e instructivo anexo"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": ""
+    },
+    {
+        "nombre": "Balbit® Olmesartán, Amlodipino, Hidrocloclorotiazida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -65,7 +91,20 @@
         "imagen": ""
     },
     {
-        "nombre": "Valsartán, Hidrocloclorotiazida",
+        "nombre": "Balbit® Olmesartán, Amlodipino, Hidrocloclorotiazida",
+        "precio_unitario": 80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "40mg, 5mg, 12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "HETERO",
+        "imagen": ""
+    },
+    {
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -78,7 +117,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Valsartán, Hidrocloclorotiazida",
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -91,12 +130,12 @@
         "imagen": ""
     },
     {
-        "nombre": "Olmesartán, Hidrocloclorotiazida",
+        "nombre": "Norsat-duo® Olmesartán, Hidrocloclorotiazida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
             "presentacion": "tableta",
-            "dosis": "10mg, 12.5mg",
+            "dosis": "20mg, 12.5mg",
             "via_administracion": "oral",
             "descripcion": "Caja con 28 tabletas"
         },
@@ -104,7 +143,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sitagliptina, Metformina",
+        "nombre": "SAARI Sitagliptina, Metformina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -117,7 +156,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sitagliptina, Metformina",
+        "nombre": "SAARI Sitagliptina, Metformina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -130,7 +169,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sitagliptina, Metformina",
+        "nombre": "SAARI Sitagliptina, Metformina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -143,7 +182,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sitagliptina",
+        "nombre": "VIDIPEP Sitagliptina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -156,7 +195,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sitagliptina",
+        "nombre": "VIDIPEP Sitagliptina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -169,7 +208,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Abiraterona",
+        "nombre": "Avitosyn® Abiraterona",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -182,7 +221,7 @@
         "imagen": "Synthon"
     },
     {
-        "nombre": "Cinacalcet",
+        "nombre": "Apthon® Cinacalcet",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -195,20 +234,20 @@
         "imagen": ""
     },
     {
-        "nombre": "Pemetrexed",
+        "nombre": "Bemetad® Pemetrexed",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
             "presentacion": "Solución",
             "dosis": "500mg",
             "via_administracion": "Inyectable",
-            "descripcion": "Caja con frasco impula con liofilizado para solución para infusión"
+            "descripcion": "Caja con frasco ámpula con liofilizado para solución para infusión"
         },
         "laboratorio": "Synthon",
         "imagen": ""
     },
     {
-        "nombre": "Bevacizumab",
+        "nombre": "Simbiva® Bevacizumab",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -221,7 +260,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Bevacizumab",
+        "nombre": "Simbiva® Bevacizumab",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -234,7 +273,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Bicalutamida",
+        "nombre": "Bilumiv® Bicalutamida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -247,7 +286,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Bicalutamida",
+        "nombre": "Bilumiv® Bicalutamida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -260,7 +299,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sunitinib",
+        "nombre": "Carenev® Sunitinib",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -273,7 +312,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Escitalopram",
+        "nombre": "Carvicem® Escitalopram",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -286,7 +325,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Escitalopram",
+        "nombre": "Carvicem® Escitalopram",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -299,7 +338,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Docetaxel",
+        "nombre": "Datilev® Docetaxel",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -312,20 +351,20 @@
         "imagen": ""
     },
     {
-        "nombre": "Docetaxel",
+        "nombre": "Datilev® Docetaxel",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
             "presentacion": "Solución",
             "dosis": "80mg/2mL",
             "via_administracion": "Inyectable",
-            "descripcion": "Caja con frasco ímpula con 80mg/2mLy frasco ímpula con diluyente"
+            "descripcion": "Caja con frasco ámpula con 80mg/2mLy frasco ámpula con diluyente"
         },
         "laboratorio": "Synthon",
         "imagen": ""
     },
     {
-        "nombre": "Dutasterida",
+        "nombre": "Doferel® Dutasterida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -338,7 +377,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Dutasterida",
+        "nombre": "Doferel® Dutasterida",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -351,7 +390,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Acetato de Glatiramer",
+        "nombre": "Doxelev® Acetato de Glatiramer",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -364,7 +403,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Donepezilo",
+        "nombre": "Dozimev® Donepezilo",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -377,7 +416,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Donepezilo",
+        "nombre": "Dozimev® Donepezilo",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -390,7 +429,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Bortezomib",
+        "nombre": "Elomaziv® Bortezomib",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -403,7 +442,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Gefitinib",
+        "nombre": "Fexilev® Gefitinib",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -416,7 +455,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Fluvoxamina",
+        "nombre": "Forezol® Fluvoxamina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -429,7 +468,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Fluvoxamina",
+        "nombre": "Forezol® Fluvoxamina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -442,7 +481,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Rasagilina",
+        "nombre": "Gizacrel® Rasagilina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -455,7 +494,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Levetiracetam",
+        "nombre": "Leprezil® Levetiracetam",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -468,7 +507,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Levetiracetam",
+        "nombre": "Leprezil® Levetiracetam",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -481,7 +520,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Ácido zoledrónico",
+        "nombre": "Lezomiv® Ácido zoledrónico",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -494,7 +533,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Anastrozol",
+        "nombre": "Magemiv® Anastrozol",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -507,7 +546,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Memantina",
+        "nombre": "Matinev® Memantina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -520,7 +559,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Memantina",
+        "nombre": "Matinev® Memantina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -533,7 +572,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Memantina",
+        "nombre": "Matinev® Memantina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -546,7 +585,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Exemestano",
+        "nombre": "Nodutax® Exemestano",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -559,7 +598,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sevelámero",
+        "nombre": "Rifosar® Sevelámero",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -572,7 +611,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Sevelámero",
+        "nombre": "Rifosar-POS® Sevelámero",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -585,7 +624,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Aripiprazol",
+        "nombre": "Ripizolnev® Aripiprazol",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -598,7 +637,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Aripiprazol",
+        "nombre": "Ripizolnev® Aripiprazol",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -611,7 +650,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Aripiprazol",
+        "nombre": "Ripizolnev® Aripiprazol",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -624,7 +663,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Tamsulosina",
+        "nombre": "Tamablan PF® Tamsulosina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -637,7 +676,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Letrozol",
+        "nombre": "Trodis® Letrozol",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -663,7 +702,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Clozapina",
+        "nombre": "Sicrep® Clozapina",
         "precio_unitario": 80,
         "cantidad_real": 10,
         "descripcion": {
@@ -671,19 +710,6 @@
             "dosis": "100mg",
             "via_administracion": "Oral",
             "descripcion": "Caja con 50 tabletas"
-        },
-        "laboratorio": "Synthon",
-        "imagen": ""
-    },
-    {
-        "nombre": "",
-        "precio_unitario": 80,
-        "cantidad_real": 10,
-        "descripcion": {
-            "presentacion": "",
-            "dosis": "",
-            "via_administracion": "",
-            "descripcion": ""
         },
         "laboratorio": "Synthon",
         "imagen": ""
