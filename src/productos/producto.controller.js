@@ -1,5 +1,4 @@
-dotenv.config();
-const dotenv = require('dotenv');
+require('dotenv').config();
 const { Producto } = require('../config/database.js');
 const capitalizeWords = require('../utils/capitalize.js').capitalizeWords;
 const fs = require('fs').promises;
@@ -12,7 +11,7 @@ class ProductoController {
    */
   static async getAllProductos(req, res) {
     try {
-      const productos = await Producto.findAll({
+      let productos = await Producto.findAll({
         order: [['id_producto', 'ASC']],
         where: {'activo': true}
       });
@@ -20,6 +19,13 @@ class ProductoController {
       if (productos.length === 0) {
         const jsonPath = path.join(__dirname, process.env.SEED_PATH);
         const data = await fs.readFile(jsonPath, 'utf-8');
+        const seed = JSON.parse(data);
+
+        await Producto.bulkCreate(seed);
+        productos = await Producto.findAll({
+          order: [['id_producto', 'ASC']],
+          where: {'activo': true}
+        });
       }
       
       res.status(200).json({
@@ -122,84 +128,84 @@ class ProductoController {
       
       nombre = capitalizeWords(nombre);
 
-      // Validaciones básicas
-      if (!nombre || nombre.trim() === '') {
-        return res.status(400).json({
-          success: false,
-          message: 'El nombre del producto es requerido'
-        });
-      }
+      // // Validaciones básicas
+      // if (!nombre || nombre.trim() === '') {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'El nombre del producto es requerido'
+      //   });
+      // }
 
-      if (await Producto.findOne({ where: { nombre: nombre, laboratorio: laboratorio } })){
-        return res.status(400).json({
-          success: false,
-          message: 'El nombre del producto ya se encuentra registrado'
-        });
-      }
+      // if (await Producto.findOne({ where: { nombre: nombre, laboratorio: laboratorio } })){
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'El nombre del producto ya se encuentra registrado'
+      //   });
+      // }
       
-      if (precio_unitario === undefined || isNaN(precio_unitario) || precio_unitario < 0) {
-        return res.status(400).json({
-          success: false,
-          message: 'El precio unitario debe ser un número válido y mayor o igual a cero'
-        });
-      }
+      // if (precio_unitario === undefined || isNaN(precio_unitario) || precio_unitario < 0) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'El precio unitario debe ser un número válido y mayor o igual a cero'
+      //   });
+      // }
       
-      if (cantidad_real === undefined || isNaN(cantidad_real) || !Number.isInteger(Number(cantidad_real)) || cantidad_real < 0
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
-        });
-      }
+      // if (cantidad_real === undefined || isNaN(cantidad_real) || !Number.isInteger(Number(cantidad_real)) || cantidad_real < 0
+      // ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
+      //   });
+      // }
 
-      if (!presentacion ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La presentación del producto es requerida'
-        });
-      }
+      // if (!presentacion ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La presentación del producto es requerida'
+      //   });
+      // }
 
-      if (!dosis ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La dosis del producto es requerida'
-        });
-      }
+      // if (!dosis ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La dosis del producto es requerida'
+      //   });
+      // }
 
-      if (!via_administracion ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La vía de administración del producto es requerida'
-        });
-      }
+      // if (!via_administracion ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La vía de administración del producto es requerida'
+      //   });
+      // }
 
-      if (!descripcion ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La descripción del producto es requerida'
-        });
-      }
+      // if (!descripcion ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La descripción del producto es requerida'
+      //   });
+      // }
 
-      const nuevoProducto = await Producto.create({
-        nombre,
-        codigo_barras,
-        descripcion: {
-                presentacion,
-                dosis,
-                via_administracion,
-                descripcion
-              },
-        laboratorio,
-        precio_unitario,
-        cantidad_real,
-        imagen
-      });
+      // const nuevoProducto = await Producto.create({
+      //   nombre,
+      //   codigo_barras,
+      //   descripcion: {
+      //           presentacion,
+      //           dosis,
+      //           via_administracion,
+      //           descripcion
+      //         },
+      //   laboratorio,
+      //   precio_unitario,
+      //   cantidad_real,
+      //   imagen
+      // });
       
-      res.status(201).json({
-        success: true,
-        data: nuevoProducto,
-        message: 'Producto creado correctamente'
-      });
+      // res.status(201).json({
+      //   success: true,
+      //   data: nuevoProducto,
+      //   message: 'Producto creado correctamente'
+      // });
     } catch (error) {
       res.status(500).json({
         success: false,
