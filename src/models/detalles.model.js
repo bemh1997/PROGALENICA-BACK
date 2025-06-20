@@ -3,9 +3,9 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('DetallePedido', {
     id_detalle_pedido: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
     cantidad: {
       type: DataTypes.BIGINT
@@ -18,12 +18,20 @@ module.exports = (sequelize) => {
       unique: true
     },
     id_pedido: {
-      type: DataTypes.BIGINT,
-      allowNull: false
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: 'pedidos',
+        key: 'id_pedido'
+      }
     },
     id_producto: {
-      type: DataTypes.BIGINT,
-      allowNull: false
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: 'productos',
+        key: 'id_producto'
+      }
     },
     activo: {
       type: DataTypes.BOOLEAN

@@ -4,15 +4,15 @@ const path = require('path');
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = require('./env');
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-//   logging: false,
-//   native: false,
-// });
-
-const sequelize = new Sequelize(process.env.DB_DEPLOY, {
-  dialect: 'postgres',
-  logging: false, 
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+  logging: false,
+  native: false,
 });
+
+// const sequelize = new Sequelize(process.env.DB_DEPLOY, {
+//   dialect: 'postgres',
+//   logging: false, 
+// });
 
 const modelDefiners = [];
 
@@ -35,8 +35,8 @@ const {
   Usuario,
   Cliente,
   Medico,
-  Administrador,
   Representante,
+  Interno, // Agregado
   Direccion,
   Producto,
   Paqueteria,
@@ -52,8 +52,8 @@ const {
 // Relaciones
 Cliente.belongsTo(Usuario, { foreignKey: 'id_usuario' });
 Medico.belongsTo(Usuario, { foreignKey: 'id_usuario' });
-Administrador.belongsTo(Usuario, { foreignKey: 'id_usuario' });
 Representante.belongsTo(Usuario, { foreignKey: 'id_usuario' });
+Interno.belongsTo(Usuario, { foreignKey: 'id_usuario' }); // Relación para internos
 
 Direccion.belongsTo(Cliente, { foreignKey: 'id_cliente' });
 

@@ -79,15 +79,23 @@ class ProductoController {
    */
   static async getProductoByNombre(req, res) {
     try {
-      console.log("holis");
-      const { nombre } = req.params;
-
-      const producto = await Producto.findAll({ 
+      let { nombre } = req.query;
+      if (!nombre || nombre.trim() === '') {
+        return res.status(400).json({
+          success: false,
+          message: 'El nombre es requerido para la búsqueda'
+        });
+      }
+      nombre = nombre.trim().toLowerCase();
+      // Búsqueda insensible a mayúsculas/minúsculas y parcial
+      const producto = await Producto.findAll({
         order: [['nombre', 'DESC']],
-        where: {'nombre': nombre, 'activo': true}
-       });
-
-      if (!producto) {
+        where: {
+          nombre: { [require('sequelize').Op.iLike]: `%${nombre}%` },
+          activo: true
+        }
+      });
+      if (!producto || producto.length === 0) {
         return res.status(404).json({
           success: false,
           message: 'Producto inexistente'
@@ -223,29 +231,27 @@ class ProductoController {
   static async updateProducto(req, res) {
     try {
       const { id } = req.params;
-      var {
-        nombre,
-        codigo_barras,
-        descripcion:{
-          presentacion,
-          dosis,
-          via_administracion,
-          descripcion
-        },
-        laboratorio,
-        precio_unitario,
-        cantidad_real,
-        imagen } = req.body;
-      
       const producto = await Producto.findByPk(id);
-      
+
       if (!producto) {
         return res.status(404).json({
           success: false,
           message: 'Producto no encontrado'
         });
       }
-      
+
+      // Extraer campos del body
+      const {
+        nombre,
+        codigo_barras,
+        descripcion,
+        laboratorio,
+        precio_unitario,
+        cantidad_real,
+        imagen,
+        activo
+      } = req.body;
+
       // Validaciones básicas
       if (nombre !== undefined && (nombre === null || nombre.trim() === '')) {
         return res.status(400).json({
@@ -253,43 +259,45 @@ class ProductoController {
           message: 'El nombre del producto no puede estar vacío'
         });
       }
-      
-      nombre = capitalizeWords(nombre);      
+
       if (precio_unitario !== undefined && (isNaN(precio_unitario) || precio_unitario < 0)) {
         return res.status(400).json({
           success: false,
           message: 'El precio unitario debe ser un número válido y mayor o igual a cero'
         });
       }
-      
+
       if (cantidad_real !== undefined && (isNaN(cantidad_real) || cantidad_real < 0)) {
         return res.status(400).json({
           success: false,
           message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
         });
       }
-      // if (descripcion !== undefined && (descripcion === null || descripcion.trim() === '')) {
-      //   return res.status(400).json({
-      //     success: false,
-      //     message: 'La descripción del producto no puede estar vacía'
-      //   });
-      // }
-      
-      await producto.update({
-        nombre,
-        codigo_barras,
-        descripcion: {
-                presentacion: presentacion? presentacion : producto.descripcion.presentacion,
-                dosis: dosis ? dosis: producto.descripcion.dosis,
-                via_administracion: via_administracion ? via_administracion : producto.descripcion.via_administracion,
-                descripcion: descripcion ? descripcion : producto.descripcion.descripcion
-              },
-        laboratorio,
-        precio_unitario,
-        cantidad_real,
-        imagen
-      });
-      
+
+      // Preparar objeto de actualización
+      const updateData = {};
+
+      if (nombre !== undefined) updateData.nombre = capitalizeWords(nombre);
+      if (codigo_barras !== undefined) updateData.codigo_barras = codigo_barras;
+      if (laboratorio !== undefined) updateData.laboratorio = laboratorio;
+      if (precio_unitario !== undefined) updateData.precio_unitario = precio_unitario;
+      if (cantidad_real !== undefined) updateData.cantidad_real = cantidad_real;
+      if (imagen !== undefined) updateData.imagen = imagen;
+      if (activo !== undefined) updateData.activo = activo;
+
+      // Manejar la actualización de la descripción anidada
+      if (descripcion !== undefined) {
+        // Tomar los valores actuales y solo sobrescribir los enviados
+        updateData.descripcion = {
+          presentacion: descripcion.presentacion !== undefined ? descripcion.presentacion : producto.descripcion.presentacion,
+          dosis: descripcion.dosis !== undefined ? descripcion.dosis : producto.descripcion.dosis,
+          via_administracion: descripcion.via_administracion !== undefined ? descripcion.via_administracion : producto.descripcion.via_administracion,
+          descripcion: descripcion.descripcion !== undefined ? descripcion.descripcion : producto.descripcion.descripcion
+        };
+      }
+
+      await producto.update(updateData);
+
       res.status(200).json({
         success: true,
         data: producto,
@@ -333,77 +341,6 @@ class ProductoController {
       res.status(500).json({
         success: false,
         message: 'Error al eliminar el producto',
-        error: error.message
-      });
-    }
-  }
-  // /**
-  //  * Elimina un producto
-  //  * @param {Object} req - Objeto de solicitud Express
-  //  * @param {Object} res - Objeto de respuesta Express
-  //  */
-  // static async deleteProducto(req, res) {
-  //   try {
-  //     const { id } = req.params;
-      
-  //     const producto = await Producto.findByPk(id);
-      
-  //     if (!producto) {
-  //       return res.status(404).json({
-  //         success: false,
-  //         message: 'Producto no encontrado'
-  //       });
-  //     }
-      
-  //     await producto.destroy();
-      
-  //     res.status(200).json({
-  //       success: true,
-  //       message: 'Producto eliminado correctamente'
-  //     });
-  //   } catch (error) {
-  //     res.status(500).json({
-  //       success: false,
-  //       message: 'Error al eliminar el producto',
-  //       error: error.message
-  //     });
-  //   }
-  // }
-
-  /**
-   * Busca productos por nombre o código de barras
-   * @param {Object} req - Objeto de solicitud Express
-   * @param {Object} res - Objeto de respuesta Express
-   */
-  static async searchProductos(req, res) {
-    try {
-      const { query } = req.query;
-      
-      if (!query || query.trim() === '') {
-        return res.status(400).json({
-          success: false,
-          message: 'Se requiere un término de búsqueda'
-        });
-      }
-      
-      const productos = await Producto.findAll({
-        where: {
-          [Sequelize.Op.or]: [
-            { nombre: { [Sequelize.Op.iLike]: `%${query}%` } },
-            { codigo_barras: { [Sequelize.Op.iLike]: `%${query}%` } }
-          ]
-        },
-        order: [['nombre', 'ASC']]
-      });
-      
-      res.status(200).json({
-        success: true,
-        data: productos
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        message: 'Error al buscar productos',
         error: error.message
       });
     }
