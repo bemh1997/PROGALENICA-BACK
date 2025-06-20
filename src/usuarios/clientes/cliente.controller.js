@@ -1,10 +1,7 @@
-const dotenv = require('dotenv');
-dotenv.config();
-const { Sequelize } = require('sequelize');
+require('dotenv').config();
 const { 
   Cliente,
-  Usuario, 
-  conn: sequelize
+  Usuario
 } = require('../../config/database.js');
 
 class ClienteController {
@@ -15,7 +12,7 @@ class ClienteController {
    */
   static async getAllClientes(req, res) {
     try {
-      const clientes = await Cliente.findAll({
+      let clientes = await Cliente.findAll({
         include: [{ model: Usuario, attributes: [
           'id_usuario',
           'nombre',
@@ -25,7 +22,8 @@ class ClienteController {
           'rfc', 
           'email'
         ] }],
-        order: [['id_cliente', 'DESC']]
+        order: [['id_cliente', 'ASC']],
+        where: { activo: true }
       });
       
       res.status(200).json({
@@ -264,6 +262,15 @@ class ClienteController {
           message: 'Cliente no encontrado'
         });
       }
+      const usuario = await Usuario.findByPk(cliente.id_usuario);
+      if (!usuario) {
+        return res.status(404).json({
+          success: false,
+          message: 'Usuario asociado no encontrado'
+        });
+      }
+      // Desactivar el usuario asociado
+      await usuario.update({ activo: false });
       
       await cliente.update({ activo: false });
       
