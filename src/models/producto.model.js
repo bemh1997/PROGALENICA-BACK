@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT
     },
     precio_unitario: {
-      type: DataTypes.NUMERIC,
+      type: DataTypes.DECIMAL(10,2),
       allowNull: false
     },
     cantidad_real: {

@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 const { Producto } = require('../config/database.js');
 const capitalizeWords = require('../utils/capitalize.js').capitalizeWords;
-
+const fs = require('fs').promises;
+const path = require('path');
 class ProductoController {
   /**
    * Obtiene todos los productos
@@ -11,10 +11,22 @@ class ProductoController {
    */
   static async getAllProductos(req, res) {
     try {
-      const productos = await Producto.findAll({
+      let productos = await Producto.findAll({
         order: [['id_producto', 'ASC']],
         where: {'activo': true}
       });
+      
+      if (productos.length === 0) {
+        const jsonPath = path.join(__dirname, process.env.SEED_PATH);
+        const data = await fs.readFile(jsonPath, 'utf-8');
+        const seed = JSON.parse(data);
+
+        await Producto.bulkCreate(seed);
+        productos = await Producto.findAll({
+          order: [['id_producto', 'ASC']],
+          where: {'activo': true}
+        });
+      }
       
       res.status(200).json({
         success: true,
