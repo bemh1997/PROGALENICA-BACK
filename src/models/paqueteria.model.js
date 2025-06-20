@@ -3,13 +3,12 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Paqueteria', {
     id_paqueteria: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true
     },
     nombre: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
     },
     activo: {
       type: DataTypes.BOOLEAN

@@ -3,9 +3,9 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('MetodoPago', {
     id_metodo_pago: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true
     },
     metodo: {
       type: DataTypes.TEXT
