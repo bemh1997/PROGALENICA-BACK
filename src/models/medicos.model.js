@@ -3,12 +3,12 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Medico', {
     id_medico: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true
     },
     id_usuario: {
-      type: DataTypes.UUID,
+      type: DataTypes.BIGINT,
       unique: true,
       allowNull: false
     },

@@ -3,9 +3,9 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Pedido', {
     id_pedido: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true
     },
     estado: {
       type: DataTypes.TEXT
@@ -35,46 +35,46 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT
     },
     id_cliente: {
-      type: DataTypes.UUID,
+      type: DataTypes.BIGINT,
       references: {
-        model: 'clientes',
-        key: 'id_cliente'
+        model: 'clientes', // Nombre de la tabla referenciada
+        key: 'id_cliente' // Clave primaria de la tabla referenciada
       }
     },
     id_medico: {
-      type: DataTypes.UUID,
+      type: DataTypes.BIGINT,
       references: {
-        model: 'medicos',
-        key: 'id_medico'
+        model: 'medicos', // Nombre de la tabla referenciada
+        key: 'id_medico' // Clave primaria de la tabla referenciada
       }
     },
     id_representante: {
-      type: DataTypes.UUID,
+      type: DataTypes.BIGINT,
       references: {
-        model: 'representantes',
-        key: 'id_representante'
+        model: 'representantes', // Nombre de la tabla referenciada
+        key: 'id_representante' // Clave primaria de la tabla referenciada
       }
     },
     id_paqueteria: {
-      type: DataTypes.UUID,
+      type: DataTypes.BIGINT,
       references: {
-        model: 'paqueterias',
-        key: 'id_paqueteria'
+        model: 'paqueterias', // Nombre de la tabla referenciada
+        key: 'id_paqueteria' // Clave primaria de la tabla referenciada
       }
     },
     id_metodo_pago: {
-      type: DataTypes.UUID,
+      type: DataTypes.BIGINT,
       references: {
-        model: 'metodo_pago',
+        model: 'metodo_pago', // <-- nombre correcto de la tabla
         key: 'id_metodo_pago'
       }
-    },
+    }, 
     activo: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     }
   }, {
     timestamps: false,
-    tableName: 'pedidos',
+    tableName: 'pedidos', 
   });
 };
