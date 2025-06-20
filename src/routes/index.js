@@ -12,6 +12,8 @@ const paqueteriaRoutes = require('../paqueterias/paqueteria.routes');
 // const administradorRoutes = require('../administradores/administrador.routes');
 
 // Uso de rutas
+router.use('/usuarios', (req, res, next) => {
+});
 router.use('/usuarios/clientes', clienteRoutes);
 // router.use('/medicos', medicoRoutes);
 // router.use('/representantes', representanteRoutes);
