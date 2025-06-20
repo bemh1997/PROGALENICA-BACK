@@ -3,12 +3,16 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Direccion', {
     id_direccion: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
     id_cliente: {
-      type: DataTypes.BIGINT
+      type: DataTypes.UUID,
+      references: {
+        model: 'clientes',
+        key: 'id_cliente'
+      }
     },
     calle:{
       type: DataTypes.TEXT,
