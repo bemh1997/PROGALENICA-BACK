@@ -3,12 +3,12 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Administrador', {
     id_administrador: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
     id_usuario: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.UUID,
       unique: true,
       allowNull: false
     },
