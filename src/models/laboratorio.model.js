@@ -1,25 +1,21 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Administrador', {
-    id_administrador: {
+  sequelize.define('Laboratorio', {
+    id_laboratorio: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    id_usuario: {
-      type: DataTypes.UUID,
-      unique: true,
+    nombre: {
+      type: DataTypes.TEXT,
       allowNull: false
-    },
-    rol: {
-      type: DataTypes.TEXT
     },
     activo: {
       type: DataTypes.BOOLEAN
     }
   }, {
-    tableName: 'administradores',
+    tableName: 'laboratorios',
     timestamps: false
   });
 };

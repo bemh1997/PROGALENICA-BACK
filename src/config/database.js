@@ -36,13 +36,14 @@ const {
   Cliente,
   Medico,
   Representante,
-  Interno, // Agregado
+  Interno, 
   Direccion,
   Producto,
   Paqueteria,
   MetodoPago,
   Pedido,
   DetallePedido,
+  Laboratorio,
 } = sequelize.models;
 
 
@@ -53,7 +54,7 @@ const {
 Cliente.belongsTo(Usuario, { foreignKey: 'id_usuario' });
 Medico.belongsTo(Usuario, { foreignKey: 'id_usuario' });
 Representante.belongsTo(Usuario, { foreignKey: 'id_usuario' });
-Interno.belongsTo(Usuario, { foreignKey: 'id_usuario' }); // Relación para internos
+Interno.belongsTo(Usuario, { foreignKey: 'id_usuario' }); 
 
 Direccion.belongsTo(Cliente, { foreignKey: 'id_cliente' });
 
@@ -65,6 +66,10 @@ Pedido.belongsTo(MetodoPago, { foreignKey: 'id_metodo_pago' });
 
 DetallePedido.belongsTo(Pedido, { foreignKey: 'id_pedido' });
 DetallePedido.belongsTo(Producto, { foreignKey: 'id_producto' });
+
+Usuario.hasOne(Interno, { foreignKey: 'id_usuario' });
+Producto.belongsTo(Laboratorio, { foreignKey: 'id_laboratorio' });
+Laboratorio.hasOne(Producto, { foreignKey: 'id_laboratorio' });
 
 module.exports = {
   ...sequelize.models,
