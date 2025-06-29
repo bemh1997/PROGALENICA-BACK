@@ -14,12 +14,19 @@ module.exports = (sequelize) => {
     codigo_barras: {
       type: DataTypes.TEXT,
     },
+    clave_sat:{
+      type: DataTypes.TEXT
+    },
     descripcion: {
       type: DataTypes.JSON,
       allowNull: false
     },
-    laboratorio: {
-      type: DataTypes.TEXT
+    id_laboratorio: {
+      type: DataTypes.UUID,
+      references: {
+        model: 'laboratorios',
+        key: 'id_laboratorio'
+      }
     },
     precio_unitario: {
       type: DataTypes.DECIMAL(10,2),
