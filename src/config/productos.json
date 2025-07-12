@@ -1,0 +1,626 @@
+[
+    {
+        "nombre": "Fremalt® Myo-Inositol, D-chiro-inositol, Ácido fólico y Manganeso",
+        "precio_unitario": 687.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Sobres",
+            "dosis": "2.5g",
+            "via_administracion": "Oral",
+            "descripcion": "Polvo para reconstituir, caja con 30 sobres. Cero azúcar, apto para veganos"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173908/fremalt_hdgxw6.png"
+    },
+    {
+        "nombre": "Medinova® Fluomizin Cloruro de Decualinio",
+        "precio_unitario": 348.70,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Vaginal",
+            "descripcion": "Caja con 6 tabletas"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Recoverón® Ácido acexámico",
+        "precio_unitario": 981.67,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Granulado",
+            "dosis": "",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 10 sobres"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Cuyulid® Ácido aledrónico/Colecalciferol",
+        "precio_unitario": 870.80,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "70mg/5600 UI",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 4 comprimidos e instructivo anexo"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Cuyulid® Ácido aledrónico/Colecalciferol",
+        "precio_unitario": 950.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "70mg/5600 UI",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 5 comprimidos e instructivo anexo"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Recoverón® Ungüento",
+        "precio_unitario": 440.67,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Ungüento",
+            "dosis": "",
+            "via_administracion": "Tópica",
+            "descripcion": "Caja con 40g"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Recoverón-C® Crema",
+        "precio_unitario": 440.67,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Crema",
+            "dosis": "",
+            "via_administracion": "Tópica",
+            "descripcion": "Caja con 40g"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Recoverón-N® Ungüento",
+        "precio_unitario": 511.67,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Ungüento",
+            "dosis": "",
+            "via_administracion": "Tópica",
+            "descripcion": "Caja con 40g"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Recoverón-NC® Crema",
+        "precio_unitario": 511.67,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Crema",
+            "dosis": "",
+            "via_administracion": "Tópica",
+            "descripcion": "Caja con 40g"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Recoverón® Gel",
+        "precio_unitario": 440.67,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Gel",
+            "dosis": "",
+            "via_administracion": "Tópica",
+            "descripcion": "Caja con 100mL"
+        },
+        "laboratorio": "Armstrong",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Balbit® Olmesartán, Amlodipino, Hidrocloclorotiazida",
+        "precio_unitario": 890.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "20mg/5mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173908/balbit_lkdl6t.png"
+    },
+    {
+        "nombre": "Balbit® Olmesartán, Amlodipino, Hidrocloclorotiazida",
+        "precio_unitario": 895.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "40mg/5mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412040/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g_x5ydj8.psd"
+    },
+    {
+        "nombre": "Balbit® Olmesartán, Amlodipino, Hidrocloclorotiazida",
+        "precio_unitario": 897.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "40mg/10mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
+        "precio_unitario": 437.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "160mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 14 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
+        "precio_unitario": 900.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "160mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
+        "precio_unitario": 758.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "80mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Karzatec® Valsartán, Hidrocloclorotiazida",
+        "precio_unitario": 918.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "160mg/25mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Norsat-Duo® Olmesartán, Hidrocloclorotiazida",
+        "precio_unitario": 630.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "20mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Norsat-Duo® Olmesartán, Hidrocloclorotiazida",
+        "precio_unitario": 762.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "40mg/12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Saari® Sitagliptina, Metformina",
+        "precio_unitario": 520.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg/850mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750373740/Saari_50mg_850mg_28_tabletas_800x800_Frontal_hix7w5.png"
+    },
+    {
+        "nombre": "Saari® Sitagliptina, Metformina",
+        "precio_unitario": 1036.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg/850mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 56 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750373911/Saari_50mg_850mg_56_tabletas_800x800_Frontal_kjvfqe.jpg"
+    },
+    {
+        "nombre": "Saari® Sitagliptina, Metformina",
+        "precio_unitario": 1076.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg/1000mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 56 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750373798/Saari_50mg_1000mg_56_tabletas_800x800_Frontal_lcoaea.jpg"
+    },
+    {
+        "nombre": "Vidipep® Sitagliptina",
+        "precio_unitario": 722.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Vidipep® Sitagliptina",
+        "precio_unitario": 733.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "100mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Hetero",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Caxetib® Axitinib",
+        "precio_unitario": 63778.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 60 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Avitosyn® Abiraterona",
+        "precio_unitario": 57188.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "500mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 60 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Carenev® Sunitinib",
+        "precio_unitario": 12647.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Cápsula",
+            "dosis": "12.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 cápsulas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Rifosar-POS® Sevelámero",
+        "precio_unitario": 3990.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Polvo",
+            "dosis": "2.4g",
+            "via_administracion": "Para suspensión",
+            "descripcion": "Caja con frasco con 60 sobres"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173907/rifosar-pos_dgm0tk.png"
+    },
+    {
+        "nombre": "Rifosar® Sevelámero",
+        "precio_unitario": 3874.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "800mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con frasco con 180 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173908/rifosar-800mg_od74eg.png"
+    },
+    {
+        "nombre": "Apthon® Cinacalcet",
+        "precio_unitario": 3654.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "30mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173905/apthon_enwdyf.png"
+    },
+    {
+        "nombre": "Nodutax® Exemestano",
+        "precio_unitario": 2999.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Comprimidos",
+            "dosis": "25mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 comprimidos"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173903/nodutax_xr6fs2.png"
+    },
+    {
+        "nombre": "Magemiv® Anastrozol",
+        "precio_unitario": 2481.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "1mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173906/magemiv_xcvoap.png"
+    },
+    {
+        "nombre": "Trodis® Letrozol",
+        "precio_unitario": 2410.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "2.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173907/trodis_lzsbxh.png"
+    },
+    {
+        "nombre": "Bilumiv® Bicalutamida",
+        "precio_unitario": 2362.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "50mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Lezomiv® Ácido zoledrónico",
+        "precio_unitario": 2231.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Solución",
+            "dosis": "4mg/5mL",
+            "via_administracion": "Inyectable",
+            "descripcion": "Caja con 1 frasco ámpula con 5mL"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173907/lezomiv_dofknp.png"
+    },
+    {
+        "nombre": "Gizacrel® Rasagilina",
+        "precio_unitario": 1834.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "1mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173903/gizacrel_rizop3.png"
+    },
+    {
+        "nombre": "Tamablan® PF Tamsulosina",
+        "precio_unitario": 939.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "0.4mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas, liberación prolongada"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173905/tamablan_rrkazw.png"
+    },
+    {
+        "nombre": "Doferel® Dutasterida",
+        "precio_unitario": 455.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Cápsula",
+            "dosis": "0.5mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 cápsulas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Fexilev® Gefitinib",
+        "precio_unitario": 38808.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "250mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 30 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173904/fexilev_rpy4bo.png"
+    },
+    {
+        "nombre": "Carvicem® Escitalopram",
+        "precio_unitario": 856.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Carvicem® Escitalopram",
+        "precio_unitario": 717.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Matinev® Memantina",
+        "precio_unitario": 987.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 56 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173906/matinev-56tabs_yu3dm3.png"
+    },
+    {
+        "nombre": "Matinev® Memantina",
+        "precio_unitario": 717.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173904/matinev_cy3e2u.png"
+    },    
+    {
+        "nombre": "Matinev® Memantina",
+        "precio_unitario": 881.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "20mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 28 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173903/matinev-20g_p6xyqm.png"
+    },
+    {
+        "nombre": "Leprezil® Levetiracetam",
+        "precio_unitario": 1280.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "500mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 60 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Ripizolnev® Aripiprazol",
+        "precio_unitario": 520.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "10mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 10 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173905/ripizolnev_pethhc.png"
+    },
+    {
+        "nombre": "Ripizolnev® Aripiprazol",
+        "precio_unitario": 1134.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "15mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 20 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    },
+    {
+        "nombre": "Tarosyn® Abiraterona",
+        "precio_unitario": 27860.00,
+        "cantidad_real": 10,
+        "descripcion": {
+            "presentacion": "Tableta",
+            "dosis": "250mg",
+            "via_administracion": "Oral",
+            "descripcion": "Caja con 120 tabletas"
+        },
+        "laboratorio": "Synthon",
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+    }
+]

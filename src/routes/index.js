@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 // // Rutas por módulo
-// const clienteRoutes = require('../clientes/cliente.routes');
+const usuarioRoutes = require('../usuarios/usuario.routes');
+const clienteRoutes = require('../usuarios/clientes/cliente.routes');
 // const medicoRoutes = require('../medicos/medico.routes');
 // const representanteRoutes = require('../representantes/representante.routes');
 const productoRoutes = require('../productos/producto.routes');
@@ -11,8 +12,9 @@ const productoRoutes = require('../productos/producto.routes');
 const paqueteriaRoutes = require('../paqueterias/paqueteria.routes');
 // const administradorRoutes = require('../administradores/administrador.routes');
 
-// // Uso de rutas
-// router.use('/clientes', clienteRoutes);
+// Uso de rutas
+router.use('/usuarios', usuarioRoutes);
+router.use('/usuarios/clientes', clienteRoutes);
 // router.use('/medicos', medicoRoutes);
 // router.use('/representantes', representanteRoutes);
 router.use('/productos', productoRoutes);
