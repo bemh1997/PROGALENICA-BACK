@@ -13,7 +13,11 @@ class ProductoController {
     try {
       let productos = await Producto.findAll({
         order: [['id_producto', 'ASC']],
-        where: {'activo': true}
+        where: {'activo': true},
+        include: [{
+          model: Laboratorio,
+          attributes: ['nombre'],
+        }]
       });
 
       if (productos.length === 0) {
@@ -58,9 +62,11 @@ class ProductoController {
       // Transformar la respuesta para que laboratorio sea un string
       const productosTransformados = productos.map(prod => {
         const plain = prod.get({ plain: true });
+        // Eliminar el campo Laboratorio y dejar solo laboratorio como string
+        const { Laboratorio, ...rest } = plain;
         return {
-          ...plain,
-          laboratorio: plain.Laboratorio ? plain.Laboratorio.nombre : null
+          ...rest,
+          laboratorio: Laboratorio ? Laboratorio.nombre : null
         };
       });
       res.status(200).json({
@@ -99,9 +105,19 @@ class ProductoController {
         });
       }
       
+      // Transformar la respuesta para que laboratorio sea un string y eliminar duplicidad
+      let prodTransformado = null;
+      if (producto) {
+        const plain = producto.get({ plain: true });
+        const { Laboratorio, ...rest } = plain;
+        prodTransformado = {
+          ...rest,
+          laboratorio: Laboratorio ? Laboratorio.nombre : null
+        };
+      }
       res.status(200).json({
         success: true,
-        data: producto
+        data: prodTransformado
       });
     } catch (error) {
       res.status(500).json({
