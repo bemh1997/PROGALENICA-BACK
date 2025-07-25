@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Producto } = require('../config/database.js');
+const { Producto, Laboratorio } = require('../config/database.js');
 const capitalizeWords = require('../utils/capitalize.js').capitalizeWords;
 const fs = require('fs').promises;
 const path = require('path');
@@ -125,12 +125,17 @@ class ProductoController {
               codigo_barras, 
               descripcion: {
                 presentacion,
-                dosis,
+                concentracion,
                 via_administracion,
                 descripcion
               },
-              laboratorio,
-              precio_unitario, 
+              id_laboratorio,
+              precio_venta,
+              temperatura_conservacion,
+              receta_medica,
+              clasificacion,
+              ficha_tecnica,
+              principio_activo, 
               cantidad_real,
               imagen } = req.body;
       
@@ -143,18 +148,26 @@ class ProductoController {
           message: 'El nombre del producto es requerido'
         });
       }
+      
+      const laboratorio = await Laboratorio.findByPk(id_laboratorio);
+      if (!laboratorio) {
+        return res.status(400).json({
+          success: false,
+          message: 'Laboratorio inexistente'
+        });
+      }
 
-      if (await Producto.findOne({ where: { nombre: nombre, laboratorio: laboratorio } })){
+      if (await Producto.findOne({ where: { nombre: nombre, id_laboratorio: id_laboratorio } })){
         return res.status(400).json({
           success: false,
           message: 'El nombre del producto ya se encuentra registrado'
         });
       }
       
-      if (precio_unitario === undefined || isNaN(precio_unitario) || precio_unitario < 0) {
+      if (precio_venta === undefined || isNaN(precio_venta) || precio_venta < 0) {
         return res.status(400).json({
           success: false,
-          message: 'El precio unitario debe ser un número válido y mayor o igual a cero'
+          message: 'El precio de venta debe ser un número válido y mayor o igual a cero'
         });
       }
       
@@ -166,6 +179,48 @@ class ProductoController {
         });
       }
 
+      if (!concentracion ) {
+        return res.status(400).json({
+          success: false,
+          message: 'La concentración del producto es requerida'
+        });
+      }
+
+      // if (!temperatura_conservacion ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La temperatura de conservación del producto es requerida'
+      //   });
+      // }
+
+      // if (!clasificacion ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La clasificación del producto es requerida'
+      //   });
+      // }
+
+      if (!principio_activo ) {
+        return res.status(400).json({
+          success: false,
+          message: 'El principio activo del producto es requerido'
+        });
+      }
+
+      // if (!ficha_tecnica ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La ficha técnica del producto es requerida'
+      //   });
+      // }
+
+      // if (!receta_medica ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La especificación de si el producto requiere receta médica es requerida'
+      //   });
+      // }
+
       if (!presentacion ) {
         return res.status(400).json({
           success: false,
@@ -173,10 +228,10 @@ class ProductoController {
         });
       }
 
-      if (!dosis ) {
+      if (!concentracion ) {
         return res.status(400).json({
           success: false,
-          message: 'La dosis del producto es requerida'
+          message: 'La concentracion del producto es requerida'
         });
       }
 
@@ -199,12 +254,17 @@ class ProductoController {
         codigo_barras,
         descripcion: {
                 presentacion,
-                dosis,
+                concentracion,
                 via_administracion,
                 descripcion
               },
-        laboratorio,
-        precio_unitario,
+        id_laboratorio,
+        precio_venta,
+        temperatura_conservacion,
+        receta_medica,
+        clasificacion,
+        ficha_tecnica,
+        principio_activo, 
         cantidad_real,
         imagen
       });
@@ -245,9 +305,14 @@ class ProductoController {
         nombre,
         codigo_barras,
         descripcion,
-        laboratorio,
-        precio_unitario,
+        id_laboratorio,
+        precio_venta,
         cantidad_real,
+        temperatura_conservacion,
+        receta_medica,
+        clasificacion,
+        ficha_tecnica,
+        principio_activo, 
         imagen,
         activo
       } = req.body;
@@ -260,7 +325,22 @@ class ProductoController {
         });
       }
 
-      if (precio_unitario !== undefined && (isNaN(precio_unitario) || precio_unitario < 0)) {
+      const laboratorio = await Laboratorio.findByPk(id_laboratorio);
+      if (!laboratorio && id_laboratorio !== undefined) {
+        return res.status(400).json({
+          success: false,
+          message: 'Laboratorio inexistente'
+        });
+      }
+
+      if (id_laboratorio !== undefined && (id_laboratorio === null || id_laboratorio.trim() === '')) {
+        return res.status(400).json({
+          success: false,
+          message: 'El nombre del laboratorio no puede estar vacío'
+        });
+      }
+
+      if (precio_venta !== undefined && (isNaN(precio_venta) || precio_venta < 0)) {
         return res.status(400).json({
           success: false,
           message: 'El precio unitario debe ser un número válido y mayor o igual a cero'
@@ -279,9 +359,14 @@ class ProductoController {
 
       if (nombre !== undefined) updateData.nombre = capitalizeWords(nombre);
       if (codigo_barras !== undefined) updateData.codigo_barras = codigo_barras;
-      if (laboratorio !== undefined) updateData.laboratorio = laboratorio;
-      if (precio_unitario !== undefined) updateData.precio_unitario = precio_unitario;
+      if (id_laboratorio !== undefined) updateData.id_laboratorio = id_laboratorio;
+      if (precio_venta !== undefined) updateData.precio_venta = precio_venta;
       if (cantidad_real !== undefined) updateData.cantidad_real = cantidad_real;
+      if (temperatura_conservacion !== undefined) updateData.temperatura_conservacion = temperatura_conservacion;
+      if (receta_medica !== undefined) updateData.receta_medica = receta_medica;
+      if (clasificacion !== undefined) updateData.clasificacion = clasificacion;
+      if (ficha_tecnica !== undefined) updateData.ficha_tecnica = ficha_tecnica;
+      if (principio_activo !== undefined) updateData.principio_activo = principio_activo;
       if (imagen !== undefined) updateData.imagen = imagen;
       if (activo !== undefined) updateData.activo = activo;
 
@@ -290,7 +375,7 @@ class ProductoController {
         // Tomar los valores actuales y solo sobrescribir los enviados
         updateData.descripcion = {
           presentacion: descripcion.presentacion !== undefined ? descripcion.presentacion : producto.descripcion.presentacion,
-          dosis: descripcion.dosis !== undefined ? descripcion.dosis : producto.descripcion.dosis,
+          concentracion: descripcion.concentracion !== undefined ? descripcion.concentracion : producto.descripcion.concentracion,
           via_administracion: descripcion.via_administracion !== undefined ? descripcion.via_administracion : producto.descripcion.via_administracion,
           descripcion: descripcion.descripcion !== undefined ? descripcion.descripcion : producto.descripcion.descripcion
         };

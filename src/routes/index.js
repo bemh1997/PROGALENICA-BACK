@@ -10,6 +10,7 @@ const productoRoutes = require('../productos/producto.routes');
 // const pedidoRoutes = require('../pedidos/pedido.routes');
 // const detalleRoutes = require('../pedidos/detalles/detalle.routes');
 const paqueteriaRoutes = require('../paqueterias/paqueteria.routes');
+const laboratorioRoutes = require('../laboratorio/laboratorio.routes');
 // const administradorRoutes = require('../administradores/administrador.routes');
 
 // Uso de rutas
@@ -21,6 +22,7 @@ router.use('/productos', productoRoutes);
 // router.use('/pedidos', pedidoRoutes);
 // router.use('/detalles', detalleRoutes);
 router.use('/paqueterias', paqueteriaRoutes);
+router.use('/laboratorios', laboratorioRoutes);
 // router.use('/administradores', administradorRoutes);
 
 module.exports = router;
