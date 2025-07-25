@@ -31,9 +31,23 @@ module.exports = (sequelize) => {
       defaultValue: true
     },
     descripcion: {
-      type: DataTypes.JSON,
+      type: DataTypes.TEXT,
       allowNull: false
     },
+    
+    presentacion: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    concentracion: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    via_administracion: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+
     id_laboratorio: {
       type: DataTypes.UUID,
       references: {
@@ -57,7 +71,7 @@ module.exports = (sequelize) => {
       defaultValue: true
     },
   }, {
-    timestamps: false,
+    timestamps: true,
     tableName: 'productos', 
   });
 };

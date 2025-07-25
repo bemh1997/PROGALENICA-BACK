@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Laboratorio } = require('../config/database.js');
-
+const fs = require('fs').promises;
+const path = require('path');
 class LaboratorioController {
   /**
    * Obtiene todos los laboratorios
@@ -13,6 +14,18 @@ class LaboratorioController {
         order: [['id_laboratorio', 'ASC']],
         where: { activo: true }
       });
+
+      if (laboratorios.length === 0) {
+        const jsonLabsPath = path.join(__dirname, process.env.SEED_LABS_PATH);
+        const dataLabs = await fs.readFile(jsonLabsPath, 'utf-8');
+        const seedLabs = JSON.parse(dataLabs);
+        await Laboratorio.bulkCreate(seedLabs);
+
+        laboratorios = await Laboratorio.findAll({
+          order: [['id_laboratorio', 'ASC']], 
+          where: { activo: true }
+        });
+      }
 
       res.status(200).json({
         success: true,

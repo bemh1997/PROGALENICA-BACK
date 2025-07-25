@@ -13,24 +13,63 @@ class ProductoController {
     try {
       let productos = await Producto.findAll({
         order: [['id_producto', 'ASC']],
-        where: {'activo': true}
+        where: {'activo': true},
+        include: [{
+          model: Laboratorio,
+          attributes: ['nombre'],
+        }]
       });
-      
-      if (productos.length === 0) {
-        const jsonPath = path.join(__dirname, process.env.SEED_PATH);
-        const data = await fs.readFile(jsonPath, 'utf-8');
-        const seed = JSON.parse(data);
 
-        await Producto.bulkCreate(seed);
-        productos = await Producto.findAll({
-          order: [['id_producto', 'ASC']],
+      if (productos.length === 0) {
+        let laboratorios = await Laboratorio.findAll({
+          order: [['id_laboratorio', 'ASC']],
           where: {'activo': true}
         });
+        if (laboratorios.length === 0) {
+          const jsonLabsPath = path.join(__dirname, process.env.SEED_LABS_PATH);
+          const dataLabs = await fs.readFile(jsonLabsPath, 'utf-8');
+          const seedLabs = JSON.parse(dataLabs);
+          await Laboratorio.bulkCreate(seedLabs);
+        }
+        const jsonProductsPath = path.join(__dirname, process.env.SEED_PRODUCTS_PATH);
+        const dataProducts = await fs.readFile(jsonProductsPath, 'utf-8');
+        let seedProducts = JSON.parse(dataProducts);
+
+        // Enlazar laboratorio por nombre antes de crear productos
+        for (const prod of seedProducts) {
+          if (prod.laboratorio) {
+            const lab = await Laboratorio.findOne({
+              where: { nombre: { [require('sequelize').Op.iLike]: prod.laboratorio } }
+            });
+            if (lab) {
+              prod.id_laboratorio = lab.id_laboratorio;
+            }
+          }
+          delete prod.laboratorio; // Elimina el campo laboratorio por nombre
+        }
+
+        await Producto.bulkCreate(seedProducts);
+        productos = await Producto.findAll({
+          order: [['id_producto', 'ASC']],
+          where: {'activo': true},
+          include: [{
+            model: Laboratorio,
+            attributes: ['nombre'],
+          }]
+        });
       }
-      
+
+      // Transformar la respuesta para que laboratorio sea un string
+      const productosTransformados = productos.map(prod => {
+        const plain = prod.get({ plain: true });
+        return {
+          ...plain,
+          laboratorio: plain.Laboratorio ? plain.Laboratorio.nombre : null
+        };
+      });
       res.status(200).json({
         success: true,
-        data: productos
+        data: productosTransformados
       });
     } catch (error) {
       res.status(500).json({
@@ -50,7 +89,12 @@ class ProductoController {
     try {
       const { id } = req.params;
       
-      const producto = await Producto.findByPk(id);
+      const producto = await Producto.findByPk(id, {
+        include: [{
+          model: Laboratorio,
+          attributes: ['nombre'],
+        }]
+      });
       
       if (!producto) {
         return res.status(404).json({
@@ -122,23 +166,21 @@ class ProductoController {
   static async createProducto(req, res) {
     try {
       var { nombre,
-              codigo_barras, 
-              descripcion: {
-                presentacion,
-                concentracion,
-                via_administracion,
-                descripcion
-              },
-              id_laboratorio,
-              precio_venta,
-              temperatura_conservacion,
-              receta_medica,
-              clasificacion,
-              ficha_tecnica,
-              principio_activo, 
-              cantidad_real,
-              imagen } = req.body;
-      
+        codigo_barras,
+        presentacion,
+        concentracion,
+        via_administracion,
+        descripcion,
+        laboratorio,
+        precio_venta,
+        temperatura_conservacion,
+        receta_medica,
+        clasificacion,
+        ficha_tecnica,
+        principio_activo,
+        cantidad_real,
+        imagen } = req.body;
+
       nombre = capitalizeWords(nombre);
 
       // Validaciones básicas
@@ -148,14 +190,36 @@ class ProductoController {
           message: 'El nombre del producto es requerido'
         });
       }
-      
-      const laboratorio = await Laboratorio.findByPk(id_laboratorio);
-      if (!laboratorio) {
+
+      // Validar que laboratorio sea requerido
+      if (!laboratorio || laboratorio.trim() === '') {
+        return res.status(400).json({
+          success: false,
+          message: 'El laboratorio es requerido'
+        });
+      }
+
+      // Buscar laboratorio por id o nombre
+      let laboratorioObj = null;
+      // Si es un UUID (id), busca por PK
+      if (/^[0-9a-fA-F\-]{36}$/.test(laboratorio)) {
+        laboratorioObj = await Laboratorio.findByPk(laboratorio);
+      } else {
+        // Si no, busca por nombre (insensible a mayúsculas/minúsculas)
+        laboratorioObj = await Laboratorio.findOne({
+          where: { nombre: { [require('sequelize').Op.iLike]: laboratorio } }
+        });
+      }
+
+      if (!laboratorioObj) {
         return res.status(400).json({
           success: false,
           message: 'Laboratorio inexistente'
         });
       }
+      // Crear producto
+      
+      const id_laboratorio = laboratorioObj.id_laboratorio; // Usar este PK para el producto
 
       if (await Producto.findOne({ where: { nombre: nombre, id_laboratorio: id_laboratorio } })){
         return res.status(400).json({
@@ -252,12 +316,10 @@ class ProductoController {
       const nuevoProducto = await Producto.create({
         nombre,
         codigo_barras,
-        descripcion: {
-                presentacion,
-                concentracion,
-                via_administracion,
-                descripcion
-              },
+        presentacion,
+        concentracion,
+        via_administracion,
+        descripcion,
         id_laboratorio,
         precio_venta,
         temperatura_conservacion,

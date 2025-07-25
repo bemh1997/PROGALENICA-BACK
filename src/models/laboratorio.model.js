@@ -12,7 +12,8 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     activo: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
   }, {
     tableName: 'laboratorios',
