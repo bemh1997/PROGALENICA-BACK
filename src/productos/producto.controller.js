@@ -13,11 +13,7 @@ class ProductoController {
     try {
       let productos = await Producto.findAll({
         order: [['id_producto', 'ASC']],
-        where: {'activo': true},
-        include: [{
-          model: Laboratorio,
-          attributes: ['nombre'],
-        }]
+        where: {'activo': true}
       });
 
       if (productos.length === 0) {
