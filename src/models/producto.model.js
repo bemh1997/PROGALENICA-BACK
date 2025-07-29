@@ -14,6 +14,9 @@ module.exports = (sequelize) => {
     codigo_barras: {
       type: DataTypes.TEXT,
     },
+    codigo_sat: {
+      type: DataTypes.TEXT,
+    },
     ficha_tecnica:{
       type: DataTypes.TEXT
     },

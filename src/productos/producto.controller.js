@@ -167,6 +167,7 @@ class ProductoController {
     try {
       var { nombre,
         codigo_barras,
+        codigo_sat,
         presentacion,
         concentracion,
         via_administracion,
@@ -316,6 +317,7 @@ class ProductoController {
       const nuevoProducto = await Producto.create({
         nombre,
         codigo_barras,
+        codigo_sat,//
         presentacion,
         concentracion,
         via_administracion,
@@ -366,7 +368,11 @@ class ProductoController {
       const {
         nombre,
         codigo_barras,
+        codigo_sat,
         descripcion,
+        presentacion,
+        concentracion,
+        via_administracion,
         id_laboratorio,
         precio_venta,
         cantidad_real,
@@ -421,6 +427,7 @@ class ProductoController {
 
       if (nombre !== undefined) updateData.nombre = capitalizeWords(nombre);
       if (codigo_barras !== undefined) updateData.codigo_barras = codigo_barras;
+      if (codigo_sat !== undefined) updateData.codigo_sat = codigo_sat;
       if (id_laboratorio !== undefined) updateData.id_laboratorio = id_laboratorio;
       if (precio_venta !== undefined) updateData.precio_venta = precio_venta;
       if (cantidad_real !== undefined) updateData.cantidad_real = cantidad_real;
@@ -429,20 +436,13 @@ class ProductoController {
       if (clasificacion !== undefined) updateData.clasificacion = clasificacion;
       if (ficha_tecnica !== undefined) updateData.ficha_tecnica = ficha_tecnica;
       if (principio_activo !== undefined) updateData.principio_activo = principio_activo;
+      if (descripcion !== undefined) updateData.descripcion = descripcion;
+      if (concentracion !== undefined) updateData.concentracion = concentracion;
+      if (presentacion !== undefined) updateData.presentacion = presentacion;
+      if (via_administracion !== undefined) updateData.via_administracion = via_administracion;
       if (imagen !== undefined) updateData.imagen = imagen;
       if (activo !== undefined) updateData.activo = activo;
-
-      // Manejar la actualización de la descripción anidada
-      if (descripcion !== undefined) {
-        // Tomar los valores actuales y solo sobrescribir los enviados
-        updateData.descripcion = {
-          presentacion: descripcion.presentacion !== undefined ? descripcion.presentacion : producto.descripcion.presentacion,
-          concentracion: descripcion.concentracion !== undefined ? descripcion.concentracion : producto.descripcion.concentracion,
-          via_administracion: descripcion.via_administracion !== undefined ? descripcion.via_administracion : producto.descripcion.via_administracion,
-          descripcion: descripcion.descripcion !== undefined ? descripcion.descripcion : producto.descripcion.descripcion
-        };
-      }
-
+      
       await producto.update(updateData);
 
       res.status(200).json({
