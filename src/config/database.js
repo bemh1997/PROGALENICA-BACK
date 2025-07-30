@@ -4,15 +4,28 @@ const path = require('path');
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = require('./env');
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-//   logging: false,
-//   native: false,
-// });
+let sequelize;
 
-const sequelize = new Sequelize(process.env.DB_DEPLOY, {
-  dialect: 'postgres',
-  logging: false, 
-});
+if (process.env.DB_DEPLOY) {
+  // 🌐 Modo deploy (Railway, Supabase, RDS, etc.)
+  sequelize = new Sequelize(process.env.DB_DEPLOY, {
+    dialect: 'postgres',
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  });
+} else {
+  // 🖥️ Modo local
+  sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+    logging: false,
+    native: false,
+  });
+}
+
 
 const modelDefiners = [];
 

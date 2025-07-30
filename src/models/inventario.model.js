@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Laboratorio', {
+  sequelize.define('Inventario', {
     id_laboratorio: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -12,8 +12,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     activo: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
+      type: DataTypes.BOOLEAN
     }
   }, {
     tableName: 'laboratorios',
