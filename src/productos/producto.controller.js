@@ -236,13 +236,13 @@ class ProductoController {
         });
       }
       
-      if (cantidad_real === undefined || isNaN(cantidad_real) || !Number.isInteger(Number(cantidad_real)) || cantidad_real < 0
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
-        });
-      }
+      // if (cantidad_real === undefined || isNaN(cantidad_real) || !Number.isInteger(Number(cantidad_real)) || cantidad_real < 0
+      // ) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
+      //   });
+      // }
 
       if (!concentracion ) {
         return res.status(400).json({
@@ -311,6 +311,13 @@ class ProductoController {
         return res.status(400).json({
           success: false,
           message: 'La descripción del producto es requerida'
+        });
+      }
+      
+      if (!codigo_sat || codigo_sat.trim() === '') {
+        return res.status(400).json({
+          success: false,
+          message: 'El código SAT del producto es requerido'
         });
       }
 

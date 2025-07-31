@@ -46,6 +46,10 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL,
       allowNull: false
     },
+    activo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
   }, {
     tableName: 'inventario',
     timestamps: false
