@@ -37,7 +37,6 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    
     presentacion: {
       type: DataTypes.TEXT,
       allowNull: false

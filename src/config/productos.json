@@ -13,7 +13,7 @@
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173908/fremalt_hdgxw6.png"
     },
     {
-        "nombre": "MedinovaFluomizin®",
+        "nombre": "Medinova Fluomizin®",
         "precio_unitario": 348.70,
         "cantidad_real": 10,
         "presentacion": "Tableta",
@@ -23,7 +23,7 @@
         "principio_activo": "Cloruro de Decualinio",
         "laboratorio": "Armstrong",
         "precio_venta": 5,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/medinova_bao5kp.jpg"
     },
     {
         "nombre": "Recoverón®",
@@ -36,7 +36,7 @@
         "principio_activo": "Ácido acexámico",
         "laboratorio": "Armstrong",
         "precio_venta": 5,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836899/recoveron_hjwrp2.jpg"
     },
     {
         "nombre": "Cuyulid®",
@@ -49,7 +49,7 @@
         "principio_activo": "Ácido aledrónico/Colecalciferol",
         "laboratorio": "Armstrong",
         "precio_venta": 5,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836908/Cuyulid_u42ts1.png"
     },
     {
         "nombre": "Cuyulid®",
@@ -296,7 +296,7 @@
         "principio_activo": "Sitagliptina",
         "laboratorio": "Hetero",
         "precio_venta":10,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836544/vidipep50_xwexe2.png"
     },
     {
         "nombre": "Vidipep®",
@@ -309,7 +309,7 @@
         "principio_activo": "Sitagliptina",
         "laboratorio": "Hetero",
         "precio_venta":10,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836544/vidipep100_onlrqf.png"
     },
     {
         "nombre": "Caxetib®",
@@ -354,11 +354,11 @@
         "nombre": "Rifosar-POS®",
         "precio_unitario": 3990.00,
         "cantidad_real": 10,
-            "presentacion": "Polvo",
+        "presentacion": "Polvo",
         "concentracion": "2.4g",
         "via_administracion": "Para suspensión",
         "descripcion": "Caja con frasco con 60 sobres",
-    "principio_activo": "Sevelámero",
+        "principio_activo": "Sevelámero",   
         "laboratorio": "Synthon",
         "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173907/rifosar-pos_dgm0tk.png"
@@ -374,7 +374,7 @@
         "principio_activo": "Sevelámero",
         "laboratorio": "Synthon",
         "precio_venta": 15,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173908/rifosar-800mg_od74eg.png"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/rifosar_800mg_trxx1l.jpg"
     },
     {
         "nombre": "Apthon®",
@@ -445,7 +445,7 @@
         "nombre": "Lezomiv®",
         "precio_unitario": 2231.00,
         "cantidad_real": 10,
-            "presentacion": "Solución",
+        "presentacion": "Solución",
         "concentracion": "4mg/5mL",
         "via_administracion": "Inyectable",
         "descripcion": "Caja con 1 frasco ámpula con 5mL",
@@ -484,14 +484,14 @@
         "nombre": "Doferel®",
         "precio_unitario": 455.00,
         "cantidad_real": 10,
-            "presentacion": "Cápsula",
+        "presentacion": "Cápsula",
         "concentracion": "0.5mg",
         "via_administracion": "Oral",
         "descripcion": "Caja con 30 cápsulas",
-    "principio_activo": "Dutasterida",
+        "principio_activo": "Dutasterida",
         "laboratorio": "Synthon",
         "precio_venta": 15,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412212/doferel_90_capsulas_eizwih.png"
     },
     {
         "nombre": "Fexilev®",
@@ -582,7 +582,7 @@
         "principio_activo": "Levetiracetam",
         "laboratorio": "Synthon",
         "precio_venta": 15,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412375/leprezil_60_tabletas_h6idzh.png"
     },
     {
         "nombre": "Ripizolnev®",
@@ -595,7 +595,7 @@
         "principio_activo": "Aripiprazol",
         "laboratorio": "Synthon",
         "precio_venta": 15,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173905/ripizolnev_pethhc.png"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/Ripizolnev_10_mg_x_10_tabs_lbiknp.jpg"
     },
     {
         "nombre": "Ripizolnev®",
@@ -608,7 +608,7 @@
         "principio_activo": "Aripiprazol",
         "laboratorio": "Synthon",
         "precio_venta": 15,
-        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
+        "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412392/Ripizolnev_15_mg_x_20_tabs_ia1sfz.jpg"
     },
     {
         "nombre": "Tarosyn®",
