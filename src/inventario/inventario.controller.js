@@ -63,13 +63,12 @@ class InventarioController {
   }
   
   /**
-   * Obtiene un producto por su nombre
+   * Obtiene las entradas de inventario por producto
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
   static async getInventarioByProducto(req, res) {
     try {
-      console.log("entrando al getInventarioByProducto");
       let { producto } = req.query;
       if (!producto || producto.trim() === '') {
         return res.status(400).json({
@@ -138,11 +137,7 @@ class InventarioController {
         numero_lote,
         fecha_caducidad,
         cantidad_disponible,
-        stock_minimo,
-        stock_maximo,
         ubicacion_almacen,
-        costo_unitario,
-        iva_aplicable,
       } = req.body;
 
        // Validar que producto no este vacío
@@ -176,58 +171,36 @@ class InventarioController {
 
       // Validaciones de campos obligatorios
 
-      if (cantidad_disponible === undefined || isNaN(cantidad_disponible) || cantidad_disponible < 0) {
+      const cantidad_inventario = productoObj.cantidad_real;
+      const stock_maximo = productoObj.stock_maximo;
+
+      if (Number(cantidad_inventario) + Number(cantidad_disponible) > Number(stock_maximo)) {
         return res.status(400).json({
           success: false,
-          message: 'La cantidad disponible debe ser un número válido y mayor o igual a cero'
+          message: 'La cantidad total en inventario excede el stock máximo permitido para este producto'
         });
       }
 
-      if (stock_maximo === undefined || isNaN(stock_maximo) || stock_maximo < 0) {
-        return res.status(400).json({
-          success: false,
-          message: 'El stock máximo debe ser un número válido y mayor o igual a cero'
-        });
-      }
+      // if (cantidad_disponible === undefined || isNaN(cantidad_disponible) || cantidad_disponible < 0) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La cantidad disponible debe ser un número válido y mayor o igual a cero'
+      //   });
+      // }
 
-      if (stock_minimo === undefined || isNaN(stock_minimo) || stock_minimo < 0) {
-        return res.status(400).json({
-          success: false,
-          message: 'El stock mínimo debe ser un número válido y mayor o igual a cero'
-        });
-      }
-
-      if (costo_unitario === undefined || isNaN(costo_unitario) || costo_unitario < 0) {
-        return res.status(400).json({
-          success: false,
-          message: 'El costo unitario debe ser un número válido y mayor o igual a cero'
-        });
-      }
-
-      if (ubicacion_almacen === undefined || ubicacion_almacen.trim() === '') {
-        return res.status(400).json({
-          success: false,
-          message: 'La ubicación del almacén es obligatoria'
-        });
-      }
-
-      if (iva_aplicable === undefined || isNaN(iva_aplicable) || iva_aplicable < 0) {
-        return res.status(400).json({
-          success: false,
-          message: 'El IVA aplicable debe ser un número válido y mayor o igual a cero'
-        });
-      }
+      // if (ubicacion_almacen === undefined || ubicacion_almacen.trim() === '') {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La ubicación del almacén es obligatoria'
+      //   });
+      // }
 
       const inventario = await Inventario.create({
         id_producto,
         numero_lote,
         fecha_caducidad,
         cantidad_disponible,
-        stock_minimo,
-        stock_maximo,
-        ubicacion_almacen,
-        costo_unitario,
-        iva_aplicable
+        ubicacion_almacen
       });
 
       res.status(201).json({
@@ -272,11 +245,7 @@ class InventarioController {
         numero_lote,
         fecha_caducidad,
         cantidad_disponible,
-        stock_minimo,
-        stock_maximo,
         ubicacion_almacen,
-        costo_unitario,
-        iva_aplicable,
       } = req.body;
 
       const updateData = {};
@@ -306,6 +275,25 @@ class InventarioController {
       }
 
       //Validaciones básicas
+
+      // const cantidad_inventario = productoObj.cantidad_real;
+      // const stock_maximo = productoObj.stock_maximo;
+      // const stock_minimo = productoObj.stock_minimo;
+      const productoObj = await Producto.findByPk(inventario.id_producto);
+      if (cantidad_disponible !== undefined && Number(cantidad_disponible) > inventario.cantidad_disponible && Number(productoObj.cantidad_real) + (Number(cantidad_disponible) - Number(inventario.cantidad_disponible)) > Number(productoObj.stock_maximo)) {
+        return res.status(400).json({
+          success: false,
+          message: 'La cantidad total en inventario excede el stock máximo permitido para este producto'
+        });
+      }
+
+      else if (cantidad_disponible !== undefined && Number(cantidad_disponible) < inventario.cantidad_disponible && Number(productoObj.cantidad_real) - (Number(inventario.cantidad_disponible) - Number(cantidad_disponible)) < Number(productoObj.stock_minimo)) {
+        return res.status(400).json({
+          success: false,
+          message: 'La cantidad total en inventario es menor al stock mínimo permitido para este producto'
+        });
+      }
+
       if (producto !== undefined && (producto === null || producto.trim() === '')) {
         return res.status(400).json({
           success: false,
@@ -313,57 +301,26 @@ class InventarioController {
         });
       }
 
-      if (cantidad_disponible !== undefined && (isNaN(cantidad_disponible) || cantidad_disponible < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'La cantidad disponible debe ser un número válido y mayor o igual a cero'
-        });
-      }
+      // if (cantidad_disponible !== undefined && (isNaN(cantidad_disponible) || cantidad_disponible < 0)) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La cantidad disponible debe ser un número válido y mayor o igual a cero'
+      //   });
+      // }
 
-      if (stock_maximo !== undefined && (isNaN(stock_maximo) || stock_maximo < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'El stock máximo debe ser un número válido y mayor o igual a cero'
-        });
-      }
 
-      if (stock_minimo !== undefined && (isNaN(stock_minimo) || stock_minimo < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'El stock mínimo debe ser un número válido y mayor o igual a cero'
-        });
-      }
-
-      if (costo_unitario !== undefined && (isNaN(costo_unitario) || costo_unitario < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'El costo unitario debe ser un número válido y mayor o igual a cero'
-        });
-      }
-
-      if (ubicacion_almacen !== undefined && (ubicacion_almacen.trim() === '' || ubicacion_almacen === null)) {
-        return res.status(400).json({
-          success: false,
-          message: 'La ubicación del almacén es obligatoria'
-        });
-      }
-
-      if (iva_aplicable !== undefined && (isNaN(iva_aplicable) || iva_aplicable < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'El IVA aplicable debe ser un número válido y mayor o igual a cero'
-        });
-      }
+      // if (ubicacion_almacen !== undefined && (ubicacion_almacen.trim() === '' || ubicacion_almacen === null)) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: 'La ubicación del almacén es obligatoria'
+      //   });
+      // }
 
       // Asignar los campos actualizables
       if (numero_lote !== undefined) updateData.numero_lote = numero_lote;
       if (fecha_caducidad !== undefined) updateData.fecha_caducidad = fecha_caducidad;
       if (cantidad_disponible !== undefined) updateData.cantidad_disponible = cantidad_disponible;
-      if (stock_minimo !== undefined) updateData.stock_minimo = stock_minimo; 
-      if (stock_maximo !== undefined) updateData.stock_maximo = stock_maximo;
       if (ubicacion_almacen !== undefined) updateData.ubicacion_almacen = ubicacion_almacen;
-      if (costo_unitario !== undefined) updateData.costo_unitario = costo_unitario;
-      if (iva_aplicable !== undefined) updateData.iva_aplicable = iva_aplicable;
 
       await inventario.update(updateData);
 

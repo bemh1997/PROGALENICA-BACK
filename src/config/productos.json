@@ -1,7 +1,7 @@
 [
     {
         "nombre": "Fremalt®",
-        "precio_unitario": 687.00,
+        "precio_venta": 687.00,
         "cantidad_real": 10,
         "presentacion": "Sobres",
         "concentracion": "2.5g",
@@ -9,12 +9,11 @@
         "descripcion": "Polvo para reconstituir, caja con 30 sobres. Cero azúcar, apto para veganos",
         "principio_activo": "Myo-Inositol, D-chiro-inositol, Ácido fólico y Manganeso",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173908/fremalt_hdgxw6.png"
     },
     {
         "nombre": "Medinova Fluomizin®",
-        "precio_unitario": 348.70,
+        "precio_venta": 348.70,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "10mg",
@@ -22,12 +21,11 @@
         "descripcion": "Caja con 6 tabletas",
         "principio_activo": "Cloruro de Decualinio",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/medinova_bao5kp.jpg"
     },
     {
         "nombre": "Recoverón®",
-        "precio_unitario": 981.67,
+        "precio_venta": 981.67,
         "cantidad_real": 10,
         "presentacion": "Granulado",
         "concentracion": "",
@@ -35,12 +33,11 @@
         "descripcion": "Caja con 10 sobres",
         "principio_activo": "Ácido acexámico",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836899/recoveron_hjwrp2.jpg"
     },
     {
         "nombre": "Cuyulid®",
-        "precio_unitario": 870.80,
+        "precio_venta": 870.80,
         "cantidad_real": 10,
         "presentacion": "Comprimidos",
         "concentracion": "70mg/5600 UI",
@@ -48,12 +45,11 @@
         "descripcion": "Caja con 4 comprimidos e instructivo anexo",
         "principio_activo": "Ácido aledrónico/Colecalciferol",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836908/Cuyulid_u42ts1.png"
     },
     {
         "nombre": "Cuyulid®",
-        "precio_unitario": 950.00,
+        "precio_venta": 950.00,
         "cantidad_real": 10,
         "presentacion": "Comprimidos",
         "concentracion": "70mg/5600 UI",
@@ -61,12 +57,11 @@
         "descripcion": "Caja con 5 comprimidos e instructivo anexo",
         "principio_activo": "Ácido aledrónico/Colecalciferol",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Recoverón® Ungüento",
-        "precio_unitario": 440.67,
+        "precio_venta": 440.67,
         "cantidad_real": 10,
         "presentacion": "Ungüento",
         "concentracion": "",
@@ -74,12 +69,11 @@
         "descripcion": "Caja con 40g",
         "principio_activo": "Ácido acexámico",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Recoverón-C® Crema",
-        "precio_unitario": 440.67,
+        "precio_venta": 440.67,
         "cantidad_real": 10,
         "presentacion": "Crema",
         "concentracion": "",
@@ -87,12 +81,11 @@
         "descripcion": "Caja con 40g",
         "principio_activo": "",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Recoverón-N® Ungüento",
-        "precio_unitario": 511.67,
+        "precio_venta": 511.67,
         "cantidad_real": 10,
         "presentacion": "Ungüento",
         "concentracion": "",
@@ -100,12 +93,11 @@
         "descripcion": "Caja con 40g",
         "principio_activo": "",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Recoverón-NC® Crema",
-        "precio_unitario": 511.67,
+        "precio_venta": 511.67,
         "cantidad_real": 10,
         "presentacion": "Crema",
         "concentracion": "",
@@ -113,12 +105,11 @@
         "descripcion": "Caja con 40g",
         "principio_activo": "",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Recoverón® Gel",
-        "precio_unitario": 440.67,
+        "precio_venta": 440.67,
         "cantidad_real": 10,
         "presentacion": "Gel",
         "concentracion": "",
@@ -126,12 +117,11 @@
         "descripcion": "Caja con 100mL",
         "principio_activo": "",
         "laboratorio": "Armstrong",
-        "precio_venta": 5,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Balbit®",
-        "precio_unitario": 890.00,
+        "precio_venta": 890.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "20mg/5mg/12.5mg",
@@ -139,12 +129,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Olmesartán, Amlodipino, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173908/balbit_lkdl6t.png"
     },
     {
         "nombre": "Balbit®",
-        "precio_unitario": 895.00,
+        "precio_venta": 895.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "40mg/5mg/12.5mg",
@@ -152,12 +141,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Olmesartán, Amlodipino, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412040/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g_x5ydj8.psd"
     },
     {
         "nombre": "Balbit®",
-        "precio_unitario": 897.00,
+        "precio_venta": 897.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "40mg/10mg/12.5mg",
@@ -165,12 +153,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Olmesartán, Amlodipino, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Karzatec®",
-        "precio_unitario": 437.00,
+        "precio_venta": 437.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "160mg/12.5mg",
@@ -178,12 +165,11 @@
         "descripcion": "Caja con 14 tabletas",
         "principio_activo": "Valsartán, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Karzatec®",
-        "precio_unitario": 900.00,
+        "precio_venta": 900.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "160mg/12.5mg",
@@ -191,12 +177,11 @@
         "descripcion": "Caja con 30 tabletas",
         "principio_activo": "Valsartán, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Karzatec®",
-        "precio_unitario": 758.00,
+        "precio_venta": 758.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "80mg/12.5mg",
@@ -204,12 +189,11 @@
         "descripcion": "Caja con 30 tabletas",
         "principio_activo": "Valsartán, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Karzatec®",
-        "precio_unitario": 918.00,
+        "precio_venta": 918.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "160mg/25mg",
@@ -217,12 +201,11 @@
         "descripcion": "Caja con 30 tabletas",
         "principio_activo": "Valsartán, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Norsat-Duo®",
-        "precio_unitario": 630.00,
+        "precio_venta": 630.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "20mg/12.5mg",
@@ -230,12 +213,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Olmesartán, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Norsat-Duo®",
-        "precio_unitario": 762.00,
+        "precio_venta": 762.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "40mg/12.5mg",
@@ -243,12 +225,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Olmesartán, Hidrocloclorotiazida",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Saari®",
-        "precio_unitario": 520.00,
+        "precio_venta": 520.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "50mg/850mg",
@@ -256,12 +237,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Sitagliptina, Metformina",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750373740/Saari_50mg_850mg_28_tabletas_800x800_Frontal_hix7w5.png"
     },
     {
         "nombre": "Saari®",
-        "precio_unitario": 1036.00,
+        "precio_venta": 1036.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "50mg/850mg",
@@ -269,12 +249,11 @@
         "descripcion": "Caja con 56 tabletas",
         "principio_activo": "Sitagliptina, Metformina",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750373911/Saari_50mg_850mg_56_tabletas_800x800_Frontal_kjvfqe.jpg"
     },
     {
         "nombre": "Saari®",
-        "precio_unitario": 1076.00,
+        "precio_venta": 1076.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "50mg/1000mg",
@@ -282,12 +261,11 @@
         "descripcion": "Caja con 56 tabletas",
         "principio_activo": "Sitagliptina, Metformina",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750373798/Saari_50mg_1000mg_56_tabletas_800x800_Frontal_lcoaea.jpg"
     },
     {
         "nombre": "Vidipep®",
-        "precio_unitario": 722.00,
+        "precio_venta": 722.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "50mg",
@@ -295,12 +273,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Sitagliptina",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836544/vidipep50_xwexe2.png"
     },
     {
         "nombre": "Vidipep®",
-        "precio_unitario": 733.00,
+        "precio_venta": 733.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "100mg",
@@ -308,12 +285,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Sitagliptina",
         "laboratorio": "Hetero",
-        "precio_venta":10,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1753836544/vidipep100_onlrqf.png"
     },
     {
         "nombre": "Caxetib®",
-        "precio_unitario": 63778.00,
+        "precio_venta": 63778.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "5mg",
@@ -321,12 +297,11 @@
         "descripcion": "Caja con 60 tabletas",
         "principio_activo": "Axitinib",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Avitosyn®",
-        "precio_unitario": 57188.00,
+        "precio_venta": 57188.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "500mg",
@@ -334,12 +309,11 @@
         "descripcion": "Caja con 60 tabletas",
         "principio_activo": "Abiraterona",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Carenev®",
-        "precio_unitario": 12647.00,
+        "precio_venta": 12647.00,
         "cantidad_real": 10,
             "presentacion": "Cápsula",
         "concentracion": "12.5mg",
@@ -347,12 +321,11 @@
         "descripcion": "Caja con 28 cápsulas",
     "principio_activo": "Sunitinib",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Rifosar-POS®",
-        "precio_unitario": 3990.00,
+        "precio_venta": 3990.00,
         "cantidad_real": 10,
         "presentacion": "Polvo",
         "concentracion": "2.4g",
@@ -360,12 +333,11 @@
         "descripcion": "Caja con frasco con 60 sobres",
         "principio_activo": "Sevelámero",   
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173907/rifosar-pos_dgm0tk.png"
     },
     {
         "nombre": "Rifosar®",
-        "precio_unitario": 3874.00,
+        "precio_venta": 3874.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "800mg",
@@ -373,12 +345,11 @@
         "descripcion": "Caja con frasco con 180 tabletas",
         "principio_activo": "Sevelámero",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/rifosar_800mg_trxx1l.jpg"
     },
     {
         "nombre": "Apthon®",
-        "precio_unitario": 3654.00,
+        "precio_venta": 3654.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "30mg",
@@ -386,12 +357,11 @@
         "descripcion": "Caja con 30 tabletas",
         "principio_activo": "Cinacalcet",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173905/apthon_enwdyf.png"
     },
     {
         "nombre": "Nodutax®",
-        "precio_unitario": 2999.00,
+        "precio_venta": 2999.00,
         "cantidad_real": 10,
         "presentacion": "Comprimidos",
         "concentracion": "25mg",
@@ -399,12 +369,11 @@
         "descripcion": "Caja con 30 comprimidos",
         "principio_activo": "Exemestano",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173903/nodutax_xr6fs2.png"
     },
     {
         "nombre": "Magemiv®",
-        "precio_unitario": 2481.00,
+        "precio_venta": 2481.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "1mg",
@@ -412,12 +381,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Anastrozol",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173906/magemiv_xcvoap.png"
     },
     {
         "nombre": "Trodis®",
-        "precio_unitario": 2410.00,
+        "precio_venta": 2410.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "2.5mg",
@@ -425,12 +393,11 @@
         "descripcion": "Caja con 30 tabletas",
         "principio_activo": "Letrozol",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173907/trodis_lzsbxh.png"
     },
     {
         "nombre": "Bilumiv®",
-        "precio_unitario": 2362.00,
+        "precio_venta": 2362.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "50mg",
@@ -438,12 +405,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Bicalutamida",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Lezomiv®",
-        "precio_unitario": 2231.00,
+        "precio_venta": 2231.00,
         "cantidad_real": 10,
         "presentacion": "Solución",
         "concentracion": "4mg/5mL",
@@ -451,12 +417,11 @@
         "descripcion": "Caja con 1 frasco ámpula con 5mL",
         "principio_activo": "Ácido zoledrónico",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173907/lezomiv_dofknp.png"
     },
     {
         "nombre": "Gizacrel®",
-        "precio_unitario": 1834.00,
+        "precio_venta": 1834.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "1mg",
@@ -464,12 +429,11 @@
         "descripcion": "Caja con 30 tabletas",
         "principio_activo": "Rasagilina",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173903/gizacrel_rizop3.png"
     },
     {
         "nombre": "Tamablan PF®",
-        "precio_unitario": 939.00,
+        "precio_venta": 939.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "0.4mg",
@@ -477,12 +441,11 @@
         "descripcion": "Caja con 30 tabletas, liberación prolongada",
         "principio_activo": "Tamsulosina",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173905/tamablan_rrkazw.png"
     },
     {
         "nombre": "Doferel®",
-        "precio_unitario": 455.00,
+        "precio_venta": 455.00,
         "cantidad_real": 10,
         "presentacion": "Cápsula",
         "concentracion": "0.5mg",
@@ -490,12 +453,11 @@
         "descripcion": "Caja con 30 cápsulas",
         "principio_activo": "Dutasterida",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412212/doferel_90_capsulas_eizwih.png"
     },
     {
         "nombre": "Fexilev®",
-        "precio_unitario": 38808.00,
+        "precio_venta": 38808.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "250mg",
@@ -503,12 +465,11 @@
         "descripcion": "Caja con 30 tabletas",
         "principio_activo": "Gefitinib",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173904/fexilev_rpy4bo.png"
     },
     {
         "nombre": "Carvicem®",
-        "precio_unitario": 856.00,
+        "precio_venta": 856.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "10mg",
@@ -516,12 +477,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Escitalopram",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Carvicem®",
-        "precio_unitario": 717.00,
+        "precio_venta": 717.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "10mg",
@@ -529,12 +489,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Escitalopram",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     },
     {
         "nombre": "Matinev®",
-        "precio_unitario": 987.00,
+        "precio_venta": 987.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "10mg",
@@ -542,12 +501,11 @@
         "descripcion": "Caja con 56 tabletas",
         "principio_activo": "Memantina",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173906/matinev-56tabs_yu3dm3.png"
     },
     {
         "nombre": "Matinev®",
-        "precio_unitario": 717.00,
+        "precio_venta": 717.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "10mg",
@@ -555,12 +513,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Memantina",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173904/matinev_cy3e2u.png"
     },    
     {
         "nombre": "Matinev®",
-        "precio_unitario": 881.00,
+        "precio_venta": 881.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "20mg",
@@ -568,12 +525,11 @@
         "descripcion": "Caja con 28 tabletas",
         "principio_activo": "Memantina",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1749173903/matinev-20g_p6xyqm.png"
     },
     {
         "nombre": "Leprezil®",
-        "precio_unitario": 1280.00,
+        "precio_venta": 1280.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "500mg",
@@ -581,12 +537,11 @@
         "descripcion": "Caja con 60 tabletas",
         "principio_activo": "Levetiracetam",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412375/leprezil_60_tabletas_h6idzh.png"
     },
     {
         "nombre": "Ripizolnev®",
-        "precio_unitario": 520.00,
+        "precio_venta": 520.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "10mg",
@@ -594,12 +549,11 @@
         "descripcion": "Caja con 10 tabletas",
         "principio_activo": "Aripiprazol",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/Ripizolnev_10_mg_x_10_tabs_lbiknp.jpg"
     },
     {
         "nombre": "Ripizolnev®",
-        "precio_unitario": 1134.00,
+        "precio_venta": 1134.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "15mg",
@@ -607,12 +561,11 @@
         "descripcion": "Caja con 20 tabletas",
         "principio_activo": "Aripiprazol",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750412392/Ripizolnev_15_mg_x_20_tabs_ia1sfz.jpg"
     },
     {
         "nombre": "Tarosyn®",
-        "precio_unitario": 27860.00,
+        "precio_venta": 27860.00,
         "cantidad_real": 10,
         "presentacion": "Tableta",
         "concentracion": "250mg",
@@ -620,7 +573,6 @@
         "descripcion": "Caja con 120 tabletas",
         "principio_activo": "Abiraterona",
         "laboratorio": "Synthon",
-        "precio_venta": 15,
         "imagen": "https://res.cloudinary.com/dfvrlkbsv/image/upload/v1750375615/composicion-colorida-nuevo-producto-diseno-plano_23-2147927006_bmoj0g.avif"
     }
 ]

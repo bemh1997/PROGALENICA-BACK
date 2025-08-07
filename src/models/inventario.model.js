@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Inventario', {
+  const Inventario = sequelize.define('Inventario', {
     id_inventario: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -26,24 +26,8 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    stock_minimo:{
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    stock_maximo:{
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     ubicacion_almacen:{
       type: DataTypes.TEXT,
-      allowNull: false
-    },
-    costo_unitario:{
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    iva_aplicable:{
-      type: DataTypes.DECIMAL,
       allowNull: false
     },
     activo: {
@@ -54,4 +38,32 @@ module.exports = (sequelize) => {
     tableName: 'inventario',
     timestamps: false
   });
+
+  // 👇 Agregamos los hooks directamente al modelo
+  async function actualizarCantidadReal(id_producto) {
+    const { Producto, Inventario } = sequelize.models;
+
+    const total = await Inventario.sum('cantidad_disponible', {
+      where: { id_producto }
+    });
+
+    await Producto.update(
+      { cantidad_real: total || 0 },
+      { where: { id_producto } }
+    );
+  }
+
+  Inventario.afterCreate(async (inventario, options) => {
+    await actualizarCantidadReal(inventario.id_producto);
+  });
+
+  Inventario.afterUpdate(async (inventario, options) => {
+    await actualizarCantidadReal(inventario.id_producto);
+  });
+
+  Inventario.afterDestroy(async (inventario, options) => {
+    await actualizarCantidadReal(inventario.id_producto);
+  });
+
+  return Inventario;
 };

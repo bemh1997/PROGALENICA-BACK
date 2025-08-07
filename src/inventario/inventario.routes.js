@@ -1,4 +1,4 @@
-// productos/producto.routes.js
+// inventario/inventario.routes.js
 const express = require('express');
 const router = express.Router();
 const InventarioController = require('./inventario.controller');

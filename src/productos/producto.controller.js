@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Producto, Laboratorio } = require('../config/database.js');
+const { Producto, Laboratorio, Inventario } = require('../config/database.js');
 const capitalizeWords = require('../utils/capitalize.js').capitalizeWords;
 const fs = require('fs').promises;
 const path = require('path');
@@ -14,10 +14,21 @@ class ProductoController {
       let productos = await Producto.findAll({
         order: [['id_producto', 'ASC']],
         where: {'activo': true},
-        include: [{
-          model: Laboratorio,
-          attributes: ['nombre'],
-        }]
+        include: [
+          {
+            model: Laboratorio,
+            attributes: ['nombre'],
+          },
+          {
+            model: Inventario,
+            attributes: [
+              'numero_lote',
+              'fecha_caducidad',
+              'cantidad_disponible',
+              'ubicacion_almacen'
+            ],
+          }
+        ]
       });
 
       if (productos.length === 0) {
@@ -185,12 +196,15 @@ class ProductoController {
         via_administracion,
         descripcion,
         laboratorio,
-        precio_venta,
         temperatura_conservacion,
         receta_medica,
         clasificacion,
         ficha_tecnica,
         principio_activo,
+        costo_unitario,
+        iva_aplicable,
+        stock_minimo,
+        stock_maximo,
         cantidad_real,
         imagen } = req.body;
 
@@ -233,6 +247,7 @@ class ProductoController {
       // Crear producto
       
       const id_laboratorio = laboratorioObj.id_laboratorio; // Usar este PK para el producto
+      const precio_venta = costo_unitario * ( iva_aplicable / 100);
 
       if (await Producto.findOne({ where: { nombre: nombre, id_laboratorio: id_laboratorio } })){
         return res.status(400).json({
@@ -240,11 +255,32 @@ class ProductoController {
           message: 'El nombre del producto ya se encuentra registrado'
         });
       }
-      
-      if (precio_venta === undefined || isNaN(precio_venta) || precio_venta < 0) {
+
+      if (stock_maximo === undefined || isNaN(stock_maximo) || stock_maximo < 0) {
         return res.status(400).json({
           success: false,
-          message: 'El precio de venta debe ser un número válido y mayor o igual a cero'
+          message: 'El stock máximo debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
+      if (stock_minimo === undefined || isNaN(stock_minimo) || stock_minimo < 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'El stock mínimo debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
+      if (!concentracion ) {
+        return res.status(400).json({
+          success: false,
+          message: 'La concentración del producto es requerida'
+        });
+      }
+
+      if (!principio_activo ) {
+        return res.status(400).json({
+          success: false,
+          message: 'El principio activo del producto es requerido'
         });
       }
       
@@ -255,13 +291,6 @@ class ProductoController {
       //     message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
       //   });
       // }
-
-      if (!concentracion ) {
-        return res.status(400).json({
-          success: false,
-          message: 'La concentración del producto es requerida'
-        });
-      }
 
       // if (!temperatura_conservacion ) {
       //   return res.status(400).json({
@@ -276,13 +305,6 @@ class ProductoController {
       //     message: 'La clasificación del producto es requerida'
       //   });
       // }
-
-      if (!principio_activo ) {
-        return res.status(400).json({
-          success: false,
-          message: 'El principio activo del producto es requerido'
-        });
-      }
 
       // if (!ficha_tecnica ) {
       //   return res.status(400).json({
@@ -333,6 +355,20 @@ class ProductoController {
         });
       }
 
+      if (costo_unitario === undefined || isNaN(costo_unitario) || costo_unitario < 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'El costo unitario debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
+      if (iva_aplicable === undefined || isNaN(iva_aplicable) || iva_aplicable < 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'El IVA aplicable debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
       const nuevoProducto = await Producto.create({
         nombre,
         codigo_barras,
@@ -347,8 +383,12 @@ class ProductoController {
         receta_medica,
         clasificacion,
         ficha_tecnica,
+        iva_aplicable,
+        costo_unitario,
         principio_activo, 
         cantidad_real,
+        stock_maximo,
+        stock_minimo,
         imagen
       });
       
@@ -399,7 +439,11 @@ class ProductoController {
         receta_medica,
         clasificacion,
         ficha_tecnica,
+        iva_aplicable,
+        costo_unitario,
         principio_activo, 
+        stock_minimo,
+        stock_maximo,
         imagen,
         activo
       } = req.body;
@@ -441,6 +485,34 @@ class ProductoController {
         });
       }
 
+      if (costo_unitario !== undefined && (isNaN(costo_unitario) || costo_unitario < 0)) {
+        return res.status(400).json({
+          success: false,
+          message: 'El costo unitario debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
+      if (iva_aplicable !== undefined && (isNaN(iva_aplicable) || iva_aplicable < 0)) {
+        return res.status(400).json({
+          success: false,
+          message: 'El IVA aplicable debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
+      if (stock_maximo !== undefined && (isNaN(stock_maximo) || stock_maximo < 0)) {
+        return res.status(400).json({
+          success: false,
+          message: 'El stock máximo debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
+      if (stock_minimo !== undefined && (isNaN(stock_minimo) || stock_minimo < 0)) {
+        return res.status(400).json({
+          success: false,
+          message: 'El stock mínimo debe ser un número válido y mayor o igual a cero'
+        });
+      }
+
       // Preparar objeto de actualización
       const updateData = {};
 
@@ -460,6 +532,10 @@ class ProductoController {
       if (presentacion !== undefined) updateData.presentacion = presentacion;
       if (via_administracion !== undefined) updateData.via_administracion = via_administracion;
       if (imagen !== undefined) updateData.imagen = imagen;
+      if (costo_unitario !== undefined) updateData.costo_unitario = costo_unitario;
+      if (iva_aplicable !== undefined) updateData.iva_aplicable = iva_aplicable;
+      if (stock_maximo !== undefined) updateData.stock_maximo = stock_maximo;
+      if (stock_minimo !== undefined) updateData.stock_minimo = stock_minimo;
       if (activo !== undefined) updateData.activo = activo;
       
       await producto.update(updateData);
