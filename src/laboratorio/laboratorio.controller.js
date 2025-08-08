@@ -118,10 +118,8 @@ class LaboratorioController {
           message: 'Laboratorio no encontrado'
         });
       }
-
       // Extraer campos del body
       const {nombre} = req.body;
-
       // Validaciones básicas
       if (nombre !== undefined && (nombre === null || nombre.trim() === '')) {
         return res.status(400).json({
@@ -130,7 +128,7 @@ class LaboratorioController {
         });
       }
 
-      await laboratorio.update(updateData);
+      await laboratorio.update({ nombre });
 
       res.status(200).json({
         success: true,
@@ -155,13 +153,12 @@ class LaboratorioController {
   static async deleteLaboratorio(req, res) {
     try {
       const { id } = req.params;
-
       const laboratorio = await Laboratorio.findByPk(id);
-
+      console.log(laboratorio);
       if (!laboratorio) {
         return res.status(404).json({
           success: false,
-          message: 'Laboratorio no encontrado'
+          message: 'Laboratorio no encontra'
         });
       }
 
