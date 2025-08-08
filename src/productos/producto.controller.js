@@ -57,8 +57,14 @@ class ProductoController {
             }
           }
           delete prod.laboratorio; // Elimina el campo laboratorio por nombre
-        }
 
+          if (prod.costo_unitario && prod.iva_aplicable !== undefined) {
+            const costo = Number(prod.costo_unitario);
+            const iva = Number(prod.iva_aplicable);
+            prod.precio_venta = costo + (costo * (iva / 100));
+          }
+        }
+  
         await Producto.bulkCreate(seedProducts);
         productos = await Producto.findAll({
           order: [['id_producto', 'ASC']],
@@ -68,6 +74,23 @@ class ProductoController {
             attributes: ['nombre'],
           }]
         });
+
+        for (const prod of seedProducts) {
+          const productoCreado = await Producto.findOne({
+            where: { nombre: prod.nombre }
+          });
+
+          if (productoCreado && prod.cantidad_disponible) {
+            await Inventario.create({
+              id_producto: productoCreado.id_producto,
+              cantidad_disponible: prod.cantidad_disponible,
+              ubicacion_almacen: prod.ubicacion_almacen || '',
+              numero_lote: prod.numero_lote || '',
+              fecha_caducidad: prod.fecha_caducidad || null
+            });
+          }
+        }
+
       }
 
       // Transformar la respuesta para que laboratorio sea un string
@@ -206,6 +229,10 @@ class ProductoController {
         stock_minimo,
         stock_maximo,
         cantidad_real,
+        numero_lote,
+        fecha_caducidad,
+        cantidad_disponible,
+        ubicacion_almacen,
         imagen } = req.body;
 
       nombre = capitalizeWords(nombre);
@@ -247,7 +274,7 @@ class ProductoController {
       // Crear producto
       
       const id_laboratorio = laboratorioObj.id_laboratorio; // Usar este PK para el producto
-      const precio_venta = costo_unitario * ( iva_aplicable / 100);
+      const precio_venta = Number(costo_unitario) + (Number(costo_unitario) * (Number(iva_aplicable) / 100));
 
       if (await Producto.findOne({ where: { nombre: nombre, id_laboratorio: id_laboratorio } })){
         return res.status(400).json({
@@ -369,10 +396,24 @@ class ProductoController {
         });
       }
 
+      if (Number(cantidad_disponible) < Number(stock_minimo)) {
+        return res.status(400).json({
+          success: false,
+          message: 'La cantidad disponible no puede ser menor que el stock mínimo'
+        });
+      }
+
+      if (Number(cantidad_disponible) > Number(stock_maximo)) {
+        return res.status(400).json({
+          success: false,
+          message: 'La cantidad disponible no puede ser mayor que el stock máximo'
+        });
+      }
+
       const nuevoProducto = await Producto.create({
         nombre,
         codigo_barras,
-        codigo_sat,//
+        codigo_sat,
         presentacion,
         concentracion,
         via_administracion,
@@ -392,11 +433,23 @@ class ProductoController {
         imagen
       });
       
+      const inventarioNuevo = await Inventario.create({
+        id_producto: nuevoProducto.id_producto,
+        numero_lote,
+        fecha_caducidad,
+        cantidad_disponible,
+        ubicacion_almacen,
+      });
+
       res.status(201).json({
         success: true,
-        data: nuevoProducto,
+        data: {
+          producto: nuevoProducto,
+          inventario: inventarioNuevo
+        },
         message: 'Producto creado correctamente'
       });
+
     } catch (error) {
       res.status(500).json({
         success: false,

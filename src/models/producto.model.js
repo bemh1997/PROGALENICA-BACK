@@ -59,6 +59,7 @@ module.exports = (sequelize) => {
     },
     precio_venta: {
       type: DataTypes.DECIMAL(10,2),
+      defaultValue: 0,
       allowNull: false
     },
     cantidad_real: {
