@@ -154,18 +154,32 @@ class LaboratorioController {
     try {
       const { id } = req.params;
       const laboratorio = await Laboratorio.findByPk(id);
-      console.log(laboratorio);
       if (!laboratorio) {
         return res.status(404).json({
           success: false,
-          message: 'Laboratorio no encontra'
+          message: 'Laboratorio no encontrado'
+        });
+      }
+
+      // Buscar si existe al menos un producto activo asociado a este laboratorio
+      const { Producto } = require('../config/database.js');
+      const productosActivos = await Producto.findOne({
+        where: {
+          id_laboratorio: id,
+          activo: true
+        }
+      });
+      if (productosActivos) {
+        return res.status(400).json({
+          success: false,
+          message: 'No se puede eliminar el laboratorio porque tiene productos activos asociados.'
         });
       }
 
       await laboratorio.update({
-        activo : false
+        activo: false
       });
-      
+
       res.status(200).json({
         success: true,
         message: 'Laboratorio eliminado correctamente'
