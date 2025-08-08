@@ -118,10 +118,8 @@ class LaboratorioController {
           message: 'Laboratorio no encontrado'
         });
       }
-
       // Extraer campos del body
       const {nombre} = req.body;
-
       // Validaciones básicas
       if (nombre !== undefined && (nombre === null || nombre.trim() === '')) {
         return res.status(400).json({
@@ -130,7 +128,7 @@ class LaboratorioController {
         });
       }
 
-      await laboratorio.update(updateData);
+      await laboratorio.update({ nombre });
 
       res.status(200).json({
         success: true,
@@ -155,9 +153,7 @@ class LaboratorioController {
   static async deleteLaboratorio(req, res) {
     try {
       const { id } = req.params;
-
       const laboratorio = await Laboratorio.findByPk(id);
-
       if (!laboratorio) {
         return res.status(404).json({
           success: false,
@@ -165,10 +161,25 @@ class LaboratorioController {
         });
       }
 
-      await laboratorio.update({
-        activo : false
+      // Buscar si existe al menos un producto activo asociado a este laboratorio
+      const { Producto } = require('../config/database.js');
+      const productosActivos = await Producto.findOne({
+        where: {
+          id_laboratorio: id,
+          activo: true
+        }
       });
-      
+      if (productosActivos) {
+        return res.status(400).json({
+          success: false,
+          message: 'No se puede eliminar el laboratorio porque tiene productos activos asociados.'
+        });
+      }
+
+      await laboratorio.update({
+        activo: false
+      });
+
       res.status(200).json({
         success: true,
         message: 'Laboratorio eliminado correctamente'
