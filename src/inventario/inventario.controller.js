@@ -35,13 +35,24 @@ class InventarioController {
     try {
       const { id } = req.params;
 
-      const inventario = await Inventario.findByPk(id, {
-        include: [{
-          model: Producto,
-          attributes: ['nombre'],
-        }]
+      const inventario = await Inventario.findAll({
+        order: [['id_inventario', 'DESC']],
+        where: {
+          id_producto: id
+        }
       });
       
+      const producto = await Producto.findOne({
+          where: { id_producto: id }
+      });
+
+      if (!producto) {
+        return res.status(400).json({
+          success: false,
+          message: 'Producto inexistente'
+        });
+      }
+
       if (!inventario) {
         return res.status(404).json({
           success: false,

@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     fecha_caducidad:{
-      type: DataTypes.TEXT,
+      type: DataTypes.DATE,
       allowNull: false
     },
     cantidad_disponible:{

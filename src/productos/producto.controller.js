@@ -296,6 +296,13 @@ class ProductoController {
           message: 'El stock mínimo debe ser un número válido y mayor o igual a cero'
         });
       }
+      
+      if (Number(stock_minimo) > Number(stock_maximo)) {
+        return res.status(400).json({
+          success: false,
+          message: 'El stock mínimo debe ser menor o igual al stock máximo'
+        });
+      }
 
       if (!concentracion ) {
         return res.status(400).json({
