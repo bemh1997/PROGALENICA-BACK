@@ -13,7 +13,7 @@ router.get('/search', LaboratorioController.searchLaboratorios);
 router.post('/', LaboratorioController.createLaboratorio);
 
 // Actualizar un laboratorio existente
-router.put('/', LaboratorioController.updateLaboratorio);
+router.put('/:id', LaboratorioController.updateLaboratorio);
 
 // Eliminar un laboratorio
 router.delete('/:id', LaboratorioController.deleteLaboratorio);
