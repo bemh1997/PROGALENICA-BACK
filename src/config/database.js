@@ -57,6 +57,7 @@ const {
   Pedido,
   DetallePedido,
   Laboratorio,
+  Promocion,
   Inventario,
 } = sequelize.models;
 
@@ -87,6 +88,9 @@ Laboratorio.hasOne(Producto, { foreignKey: 'id_laboratorio' });
 
 Producto.hasMany(Inventario, { foreignKey: 'id_producto' });
 Inventario.belongsTo(Producto, { foreignKey: 'id_producto'});
+
+Producto.hasMany(Promocion, { foreignKey: 'id_producto'});
+Promocion.belongsTo(Producto, { foreignKey: 'id_producto'});
 
 module.exports = {
   ...sequelize.models,

@@ -59,10 +59,28 @@ module.exports = (sequelize) => {
     },
     precio_venta: {
       type: DataTypes.DECIMAL(10,2),
+      defaultValue: 0,
       allowNull: false
     },
     cantidad_real: {
       type: DataTypes.BIGINT,
+      // allowNull: false
+      defaultValue: 0,
+    },
+    costo_unitario:{
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    iva_aplicable:{
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    stock_minimo:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    stock_maximo:{
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     imagen:{
