@@ -1,20 +1,22 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Representante', {
-    id_representante: {
+  sequelize.define('Laboratorio', {
+    id_laboratorio: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    id_usuario: {
-      type: DataTypes.UUID,
-      unique: true,
+    nombre: {
+      type: DataTypes.TEXT,
       allowNull: false
     },
-    activo: DataTypes.BOOLEAN
+    activo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    }
   }, {
-    tableName: 'representantes',
+    tableName: 'laboratorios',
     timestamps: false
   });
 };

@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Representante', {
-    id_representante: {
+  sequelize.define('Interno', {
+    id_interno: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
@@ -12,9 +12,15 @@ module.exports = (sequelize) => {
       unique: true,
       allowNull: false
     },
-    activo: DataTypes.BOOLEAN
+    rol: {
+      type: DataTypes.ENUM('administrador', 'almacenista', 'ejecutivo'),
+      allowNull: false
+    },
+    activo: {
+      type: DataTypes.BOOLEAN
+    }
   }, {
-    tableName: 'representantes',
+    tableName: 'internos',
     timestamps: false
   });
 };
