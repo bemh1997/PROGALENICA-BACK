@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     tipo_usuario: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ENUM('cliente', 'interno', 'medico', 'representante'),
       allowNull: false
     },
     activo: DataTypes.BOOLEAN

@@ -1,19 +1,18 @@
-// usuarios/clientes/cliente.controller.js
 const express = require('express');
 const router = express.Router();
 const UsuarioController = require('./usuario.controller');
+const { verifyToken, isAdmin } = require('../utils/auth.middleware');
 
-// Obtener todos los usuarios PERMISOS DE ADMINISTRADOR
-router.get('/', UsuarioController.getAllUsuarios);
-
-// Crear un nuevo usuario
+// Rutas públicas
+router.post('/login', UsuarioController.loginUsuario);
 router.post('/', UsuarioController.createUsuario);
 
-// Actualizar el rol de un usuario existente 
-router.put('/', UsuarioController.updateUsuario);
+// Rutas protegidas que requieren autenticación y permisos de administrador
+router.get('/', verifyToken, isAdmin, UsuarioController.getAllUsuarios);
 
-// Eliminar un usuario
-router.delete('/:id', UsuarioController.deleteUsuario);
+// Rutas protegidas que requieren autenticación y permisos de administrador
+router.put('/', verifyToken, isAdmin, UsuarioController.updateUsuario);
+router.delete('/:id', verifyToken, isAdmin, UsuarioController.deleteUsuario);
 
 module.exports = router;
 

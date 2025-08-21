@@ -1,16 +1,156 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const { Sequelize } = require('sequelize');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const { 
-  Administrador,
   Representante,
-  Medico, // corregido: era Medicos
+  Medico,
   Cliente,
   Usuario,
-  Interno // Agregado
+  Interno
 } = require('../config/database.js');
 
+// Clave secreta para JWT - debe estar en variables de entorno
+const JWT_SECRET = process.env.JWT_SECRET || 'tu_clave_secreta_temporal';
+
 class UsuarioController {
+  /**
+   * Inicia sesión de usuario y genera token JWT
+   * @param {Object} req - Objeto de solicitud Express
+   * @param {Object} res - Objeto de respuesta Express
+   */
+  static async loginUsuario(req, res) {
+    try {
+      const { email, password } = req.body;
+
+      // Validaciones básicas
+      if (!email || !password) {
+        return res.status(400).json({
+          success: false,
+          message: 'Email y contraseña son requeridos'
+        });
+      }
+
+      // Buscar usuario por email
+      const usuario = await Usuario.findOne({
+        where: { 
+          email,
+          activo: true
+        }
+      });
+
+      if (!usuario) {
+        return res.status(401).json({
+          success: false,
+          message: 'Credenciales inválidas'
+        });
+      }
+
+      // Verificar contraseña
+      const isValidPassword = await bcrypt.compare(password, usuario.password);
+      if (!isValidPassword) {
+        return res.status(401).json({
+          success: false,
+          message: 'Credenciales inválidas'
+        });
+      }
+
+      // Obtener información adicional según el tipo de usuario
+      let userInfo = {};
+      if (usuario.tipo_usuario === 'interno') {
+        const interno = await Interno.findOne({
+          where: { 
+            id_usuario: usuario.id_usuario,
+            activo: true
+          }
+        });
+        if (!interno) {
+          return res.status(401).json({
+            success: false,
+            message: 'Usuario interno no encontrado o inactivo'
+          });
+        }
+        userInfo = { rol: interno.rol };
+      } else if (usuario.tipo_usuario === 'medico') {
+        const medico = await Medico.findOne({
+          where: { 
+            id_usuario: usuario.id_usuario,
+            activo: true
+          }
+        });
+        if (!medico) {
+          return res.status(401).json({
+            success: false,
+            message: 'Médico no encontrado o inactivo'
+          });
+        }
+        userInfo = { id_medico: medico.id_medico };
+      } else if (usuario.tipo_usuario === 'representante') {
+        const representante = await Representante.findOne({
+          where: { 
+            id_usuario: usuario.id_usuario,
+            activo: true
+          }
+        });
+        if (!representante) {
+          return res.status(401).json({
+            success: false,
+            message: 'Representante no encontrado o inactivo'
+          });
+        }
+        userInfo = { id_representante: representante.id_representante };
+      } else if (usuario.tipo_usuario === 'cliente') {
+        const cliente = await Cliente.findOne({
+          where: { 
+            id_usuario: usuario.id_usuario,
+            activo: true
+          }
+        });
+        if (!cliente) {
+          return res.status(401).json({
+            success: false,
+            message: 'Cliente no encontrado o inactivo'
+          });
+        }
+        userInfo = { 
+          id_cliente: cliente.id_cliente,
+          genero: cliente.genero 
+        };
+      }
+
+      // Generar token JWT
+      const token = jwt.sign(
+        {
+          id_usuario: usuario.id_usuario,
+          email: usuario.email,
+          tipo_usuario: usuario.tipo_usuario,
+          ...userInfo
+        },
+        JWT_SECRET,
+        { expiresIn: '24h' }
+      );
+
+      res.status(200).json({
+        success: true,
+        token,
+        usuario: {
+          id_usuario: usuario.id_usuario,
+          nombre: usuario.nombre,
+          apellido_paterno: usuario.apellido_paterno,
+          email: usuario.email,
+          tipo_usuario: usuario.tipo_usuario,
+          ...userInfo
+        }
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Error en el inicio de sesión',
+        error: error.message
+      });
+    }
+  }
+
   /**
    * Obtiene todos los clientes
    * @param {Object} req - Objeto de solicitud Express
@@ -49,7 +189,7 @@ class UsuarioController {
    */
   static async createUsuario(req, res) {
     try {
-      const {
+      let {
         nombre,
         apellido_paterno,
         apellido_materno,
@@ -76,15 +216,18 @@ class UsuarioController {
         return res.status(400).json({ success: false, message: 'La contraseña es obligatoria' });
       }
       if (!tipo_usuario || tipo_usuario.trim() === '') {
-        return res.status(400).json({ success: false, message: 'El tipo de usuario es obligatorio' });
+        tipo_usuario = 'cliente'; // Asignar valor por defecto
       }
+
+      // Encriptar contraseña
+      const hashedPassword = await bcrypt.hash(password, 10);
 
       // Buscar si el usuario ya existe (por email)
       let usuario = await Usuario.findOne({ where: { email } });
       let result;
       if (usuario) {
         // Reactivar usuario y su modelo correspondiente
-        await usuario.update({ activo: true, password, nombre, apellido_paterno, apellido_materno, telefono, rfc, tipo_usuario });
+        await usuario.update({ activo: true, password: hashedPassword, nombre, apellido_paterno, apellido_materno, telefono, rfc, tipo_usuario });
         if (usuario.tipo_usuario === 'cliente') {
           await Cliente.update({ activo: true }, { where: { id_usuario: usuario.id_usuario } });
         } else if (usuario.tipo_usuario === 'medico') {
@@ -104,7 +247,7 @@ class UsuarioController {
           telefono,
           rfc,
           email,
-          password,
+          password: hashedPassword,
           tipo_usuario,
           activo: true
         });
