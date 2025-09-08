@@ -1,10 +1,110 @@
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const { 
   Cliente,
   Usuario
 } = require('../../config/database.js');
 
+// Clave secreta para JWT - debe estar en variables de entorno
+const JWT_SECRET = process.env.JWT_SECRET || 'tu_clave_secreta_temporal';
+
 class ClienteController {
+  /**
+   * Inicia sesión de cliente y genera token JWT
+   * @param {Object} req - Objeto de solicitud Express
+   * @param {Object} res - Objeto de respuesta Express
+   */
+  static async loginCliente(req, res) {
+    try {
+      const { email, password } = req.body;
+
+      // Validaciones básicas
+      if (!email || !password) {
+        return res.status(400).json({
+          success: false,
+          message: 'Email y contraseña son requeridos'
+        });
+      }
+
+      // Buscar usuario por email
+      const usuario = await Usuario.findOne({
+        where: { 
+          email,
+          activo: true,
+          tipo_usuario: 'cliente'
+        }
+      });
+
+      if (!usuario) {
+        return res.status(401).json({
+          success: false,
+          message: 'Credenciales inválidas'
+        });
+      }
+
+      // Verificar contraseña
+      const isValidPassword = await bcrypt.compare(password, usuario.password);
+      if (!isValidPassword) {
+        return res.status(401).json({
+          success: false,
+          message: 'Credenciales inválidas'
+        });
+      }
+
+      // Obtener información adicional del cliente
+      const cliente = await Cliente.findOne({
+        where: { 
+          id_usuario: usuario.id_usuario,
+          activo: true
+        }
+      });
+
+      if (!cliente) {
+        return res.status(401).json({
+          success: false,
+          message: 'Cliente no encontrado o inactivo'
+        });
+      }
+      
+      const userInfo = { 
+        id_cliente: cliente.id_cliente,
+        genero: cliente.genero 
+      };
+
+      // Generar token JWT
+      const token = jwt.sign(
+        {
+          id_usuario: usuario.id_usuario,
+          email: usuario.email,
+          tipo_usuario: usuario.tipo_usuario,
+          ...userInfo
+        },
+        JWT_SECRET,
+        { expiresIn: '24h' }
+      );
+
+      res.status(200).json({
+        success: true,
+        token,
+        usuario: {
+          id_usuario: usuario.id_usuario,
+          nombre: usuario.nombre,
+          apellido_paterno: usuario.apellido_paterno,
+          email: usuario.email,
+          tipo_usuario: usuario.tipo_usuario,
+          ...userInfo
+        }
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Error en el inicio de sesión',
+        error: error.message
+      });
+    }
+  }
+
   /**
    * Obtiene todos los clientes
    * @param {Object} req - Objeto de solicitud Express
@@ -45,18 +145,30 @@ class ClienteController {
    */
   static async searchClientes(req, res) {
     try {
-      const { query } = req.query;
+      const { term } = req.query; // término de búsqueda desde query params
+      if (!term) {
+        return res.status(400).json({
+          success: false,
+          message: 'Se requiere un término de búsqueda'
+        });
+      }
+
+      const { Op } = require('sequelize');
       const clientes = await Cliente.findAll({
-        where: {
-          [Op.or]: [
-            { nombre: { [Op.like]: `%${query}%` } },
-            { email: { [Op.like]: `%${query}%` } }
-          ]
-        },
-        include: [{ model: Usuario, attributes: ['email'] }],
-        order: [['createdAt', 'DESC']]
+        where: { activo: true },
+        include: [{
+          model: Usuario,
+          where: {
+            [Op.or]: [
+              { nombre: { [Op.iLike]: `%${term}%` } },
+              { apellido_paterno: { [Op.iLike]: `%${term}%` } },
+              { email: { [Op.iLike]: `%${term}%` } }
+            ]
+          },
+          attributes: ['id_usuario', 'nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'rfc', 'email']
+        }]
       });
-      
+
       res.status(200).json({
         success: true,
         data: clientes
@@ -64,43 +176,12 @@ class ClienteController {
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al buscar los clientes',
+        message: 'Error al buscar clientes',
         error: error.message
       });
     }
   }
-  /**
-   * Acceso a cliente por email y password
-   * @param {Object} req - Objeto de solicitud Express
-   * @param {Object} res - Objeto de respuesta Express
-   */
-  static async loginCliente(req, res) {
-    try {
-      const { email, password } = req.body;
-      const cliente = await Cliente.findOne({
-        where: { email },
-        include: [{ model: Usuario, attributes: ['password'] }]
-      });
-      
-      if (!cliente || !cliente.Usuario || cliente.Usuario.password !== password) {
-        return res.status(401).json({
-          success: false,
-          message: 'Credenciales inválidas'
-        });
-      }
-      
-      res.status(200).json({
-        success: true,
-        data: cliente
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        message: 'Error al iniciar sesión',
-        error: error.message
-      });
-    }
-  }
+  
   /**
    * Crea un nuevo cliente
    * @param {Object} req - Objeto de solicitud Express
