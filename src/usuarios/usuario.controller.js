@@ -201,7 +201,7 @@ class UsuarioController {
         tipo_usuario, // ahora obligatorio
         rol // solo para internos
       } = req.body;
-
+      
       // Validaciones de campos obligatorios
       if (!nombre || nombre.trim() === '') {
         return res.status(400).json({ success: false, message: 'El nombre es obligatorio' });
@@ -212,6 +212,31 @@ class UsuarioController {
       if (!email || email.trim() === '') {
         return res.status(400).json({ success: false, message: 'El correo electrónico es obligatorio' });
       }
+
+      //Validación de campos únicos
+      email = email.toLowerCase();
+      if (await Usuario.findOne({ where: { email: email} })){
+        return res.status(400).json({
+          success: false,
+          message: 'Este correo electrónico ya está registrado'
+        });
+      }
+
+      rfc = rfc.toUpperCase();
+      if (await Usuario.findOne({ where: { rfc: rfc} })){
+        return res.status(400).json({
+          success: false,
+          message: 'RFC ya registrado'
+        });
+      }
+
+      if (await Usuario.findOne({ where: { telefono: telefono} })){
+        return res.status(400).json({
+          success: false,
+          message: 'Teléfono ya registrado'
+        });
+      }
+      
       if (!password || password.trim() === '') {
         return res.status(400).json({ success: false, message: 'La contraseña es obligatoria' });
       }
