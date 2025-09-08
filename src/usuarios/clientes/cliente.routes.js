@@ -10,7 +10,7 @@ router.get('/', ClienteController.getAllClientes);
 router.get('/search', ClienteController.searchClientes);
 
 // Acceso a cliente por email y password
-router.get('/login', ClienteController.loginCliente);
+router.post('/login', ClienteController.loginCliente);
 
 // Crear un nuevo cliente
 router.post('/', ClienteController.createCliente);

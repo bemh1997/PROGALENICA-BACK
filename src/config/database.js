@@ -1,13 +1,11 @@
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = require('./env');
+require('dotenv').config();
 
 let sequelize;
 
 if (process.env.DB_DEPLOY) {
-  // 🌐 Modo deploy (Railway, Supabase, RDS, etc.)
   sequelize = new Sequelize(process.env.DB_DEPLOY, {
     dialect: 'postgres',
     logging: false,
@@ -19,8 +17,7 @@ if (process.env.DB_DEPLOY) {
     },
   });
 } else {
-  // 🖥️ Modo local
-  sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+  sequelize = new Sequelize(`postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}`, {
     logging: false,
     native: false,
   });

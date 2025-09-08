@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     rol: {
-      type: DataTypes.ENUM('administrador', 'almacenista', 'ejecutivo'),
+      type: DataTypes.ENUM('administrador', 'almacenista', 'ejecutivo','mensajero'),
       allowNull: false
     },
     activo: {
