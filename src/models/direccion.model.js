@@ -26,7 +26,8 @@ module.exports = (sequelize) => {
     codigo_postal: DataTypes.TEXT,
     referencias: DataTypes.TEXT,
     activo: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
   }, {
     tableName: 'direcciones',
