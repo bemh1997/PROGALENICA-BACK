@@ -1,6 +1,6 @@
 require('dotenv').config();
-const { Direccion, Usuario } = require('../config/database.js');
-// const capitalizeWords = require('../utils/capitalize.js').capitalizeWords;
+const { Direccion, Cliente } = require('../config/database.js');
+const capitalizeWords = require('../utils/capitalize.js').capitalizeWords;
 const fs = require('fs').promises;
 const path = require('path');
 class DireccionController {
@@ -12,105 +12,27 @@ class DireccionController {
   static async getAllDirecciones(req, res) {
     try {
       let direcciones = await Direccion.findAll({
-        order: [['id_producto', 'ASC']],
-        where: {'activo': true},
-        include: [
-          {
-            model: Laboratorio,
-            attributes: ['nombre'],
-          },
-          {
-            model: Inventario,
-            attributes: [
-              'numero_lote',
-              'fecha_caducidad',
-              'cantidad_disponible',
-              'ubicacion_almacen'
-            ],
-          }
-        ]
-      });
-
-      if (productos.length === 0) {
-        let laboratorios = await Laboratorio.findAll({
-          order: [['id_laboratorio', 'ASC']],
-          where: {'activo': true}
-        });
-        if (laboratorios.length === 0) {
-          const jsonLabsPath = path.join(__dirname, process.env.SEED_LABS_PATH);
-          const dataLabs = await fs.readFile(jsonLabsPath, 'utf-8');
-          const seedLabs = JSON.parse(dataLabs);
-          await Laboratorio.bulkCreate(seedLabs);
-        }
-        const jsonProductsPath = path.join(__dirname, process.env.SEED_PRODUCTS_PATH);
-        const dataProducts = await fs.readFile(jsonProductsPath, 'utf-8');
-        let seedProducts = JSON.parse(dataProducts);
-
-        // Enlazar laboratorio por nombre antes de crear productos
-        for (const prod of seedProducts) {
-          if (prod.laboratorio) {
-            const lab = await Laboratorio.findOne({
-              where: { nombre: { [require('sequelize').Op.iLike]: prod.laboratorio } }
-            });
-            if (lab) {
-              prod.id_laboratorio = lab.id_laboratorio;
-            }
-          }
-          delete prod.laboratorio; // Elimina el campo laboratorio por nombre
-
-          if (prod.costo_unitario && prod.iva_aplicable !== undefined) {
-            const costo = Number(prod.costo_unitario);
-            const iva = Number(prod.iva_aplicable);
-            prod.precio_venta = costo + (costo * (iva / 100));
-          }
-        }
-  
-        await Producto.bulkCreate(seedProducts);
-        productos = await Producto.findAll({
-          order: [['id_producto', 'ASC']],
-          where: {'activo': true},
-          include: [{
-            model: Laboratorio,
-            attributes: ['nombre'],
-          }]
-        });
-
-        for (const prod of seedProducts) {
-          const productoCreado = await Producto.findOne({
-            where: { nombre: prod.nombre }
-          });
-
-          if (productoCreado && prod.cantidad_disponible) {
-            await Inventario.create({
-              id_producto: productoCreado.id_producto,
-              cantidad_disponible: prod.cantidad_disponible,
-              ubicacion_almacen: prod.ubicacion_almacen || '',
-              numero_lote: prod.numero_lote || '',
-              fecha_caducidad: prod.fecha_caducidad || null
-            });
-          }
-        }
-
-      }
-
-      // Transformar la respuesta para que laboratorio sea un string
-      const productosTransformados = productos.map(prod => {
-        const plain = prod.get({ plain: true });
-        // Eliminar el campo Laboratorio y dejar solo laboratorio como string
-        const { Laboratorio, ...rest } = plain;
-        return {
-          ...rest,
-          laboratorio: Laboratorio ? Laboratorio.nombre : null
-        };
+        order: [['id_direccion', 'ASC']],
+        where: {'activo': true}//,
+        // include: [
+        //   {
+        //     model: Cliente,
+        //     attributes: [
+        //       'nombre',
+        //       'apellido_paterno',
+        //       'apellido_materno'
+        //     ],
+        //   }
+        // ]
       });
       res.status(200).json({
-        success: true,
-        data: productosTransformados
+      success: true,
+      data: direcciones
       });
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al obtener los productos',
+        message: 'Error al obtener las direcciones',
         error: error.message
       });
     }
@@ -121,42 +43,38 @@ class DireccionController {
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
-  static async getProductoById(req, res) {
+  static async getDireccionById(req, res) {
     try {
       const { id } = req.params;
       
-      const producto = await Producto.findByPk(id, {
-        include: [{
-          model: Laboratorio,
-          attributes: ['nombre'],
-        }]
-      });
-      
-      if (!producto) {
+      const direccion = await Direccion.findByPk(id//, {
+        // include: [{
+        //   model: Cliente,
+        //     attributes: [
+        //       'nombre',
+        //       'apellido_paterno',
+        //       'apellido_materno'
+        //     ],
+        // }]
+      //}
+    );
+
+      if (!direccion) {
         return res.status(404).json({
           success: false,
-          message: 'Producto no encontrado'
+          message: 'Dirección no encontrada'
         });
       }
-      
-      // Transformar la respuesta para que laboratorio sea un string y eliminar duplicidad
-      let prodTransformado = null;
-      if (producto) {
-        const plain = producto.get({ plain: true });
-        const { Laboratorio, ...rest } = plain;
-        prodTransformado = {
-          ...rest,
-          laboratorio: Laboratorio ? Laboratorio.nombre : null
-        };
-      }
+
       res.status(200).json({
         success: true,
-        data: prodTransformado
+        data: direccion
       });
+
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al obtener el producto',
+        message: 'Error al obtener la dirección',
         error: error.message
       });
     }
@@ -167,38 +85,40 @@ class DireccionController {
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
-  static async getProductoByNombre(req, res) {
+  static async getDireccionesByCliente(req, res) {
     try {
-      let { nombre } = req.query;
-      if (!nombre || nombre.trim() === '') {
+      let { id_cliente } = req.query;
+      if (!id_cliente || id_cliente.trim() === '') {
         return res.status(400).json({
           success: false,
-          message: 'El nombre es requerido para la búsqueda'
+          message: 'El ID de cliente es requerido para la búsqueda'
         });
       }
-      nombre = nombre.trim().toLowerCase();
-      // Búsqueda insensible a mayúsculas/minúsculas y parcial
-      const producto = await Producto.findAll({
-        order: [['nombre', 'DESC']],
-        where: {
-          nombre: { [require('sequelize').Op.iLike]: `%${nombre}%` },
-          activo: true
-        }
-      });
-      if (!producto || producto.length === 0) {
-        return res.status(404).json({
+      
+      const cliente = await Cliente.findByPk(id_cliente);
+      if (!cliente) {
+        return res.status(400).json({
           success: false,
-          message: 'Producto inexistente'
+          message: 'Cliente inexistente'
         });
       }
+
+      const direcciones = await Direccion.findAll({
+        where: {
+          id_cliente: id_cliente,
+          activo: true
+        },
+        order: [['id_direccion', 'DESC']]
+      });
+
       res.status(200).json({
         success: true,
-        data: producto
+        data: direcciones
       });
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al obtener el producto',
+        message: 'Error al obtener las direcciones del cliente',
         error: error.message
       });
     }
@@ -209,9 +129,9 @@ class DireccionController {
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
-  static async createProducto(req, res) {
+  static async createDireccion(req, res) {
     try {
-      var { clienteid,
+      var { id_cliente,
         calle,
         numero_exterior,
         numero_interior,
@@ -223,14 +143,21 @@ class DireccionController {
       } = req.body;
 
       // Validaciones básicas
+      const cliente = await Cliente.findByPk(id_cliente);
+      if (!cliente) {
+        return res.status(400).json({
+          success: false,
+          message: 'Cliente inexistente'
+        });
+      }
 
-      // Validar que la calle sea requerida
       if (!calle || calle.trim() === '') {
         return res.status(400).json({
           success: false,
           message: 'El nombre de la calle es requerido'
         });
       }
+      calle = capitalizeWords(calle);
       
       if (!numero_exterior || numero_exterior.trim() === '') {
         return res.status(400).json({
@@ -245,6 +172,7 @@ class DireccionController {
           message: 'La colonia es requerida'
         });
       }
+      colonia = capitalizeWords(colonia);
       
       if (!municipio || municipio.trim() === '') {
         return res.status(400).json({
@@ -252,6 +180,7 @@ class DireccionController {
           message: 'El municipio es requerido'
         });
       }
+      municipio = capitalizeWords(municipio);
       
       if (!estado || estado.trim() === '') {
         return res.status(400).json({
@@ -259,23 +188,24 @@ class DireccionController {
           message: 'El estado es requerido'
         });
       }
+      estado = capitalizeWords(estado);
       
-      if (!codigo_postal || codigo_postal.trim() === '') {
+      if (!codigo_postal || codigo_postal.trim() === '' || isNaN(codigo_postal)) {
         return res.status(400).json({
           success: false,
           message: 'El código postal es requerido'
         });
       }
 
-      if (await Producto.findOne({ where: { nombre: nombre, id_laboratorio: id_laboratorio } })){
+      if (await Direccion.findOne({ where: { calle: calle, numero_exterior: numero_exterior, numero_interior: numero_interior, codigo_postal: codigo_postal, id_cliente: id_cliente } })){
         return res.status(400).json({
           success: false,
-          message: 'El nombre del producto ya se encuentra registrado'
+          message: 'Dirección ya registrada para este cliente'
         });
       }
 
       const nuevaDireccion = await Direccion.create({
-        clienteid,
+        id_cliente,
         calle,
         numero_exterior,
         numero_interior,
@@ -306,144 +236,101 @@ class DireccionController {
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
-  static async updateProducto(req, res) {
+  static async updateDireccion(req, res) {
     try {
       const { id } = req.params;
-      const producto = await Producto.findByPk(id);
+      const direccion = await Direccion.findByPk(id);
 
-      if (!producto) {
+      if (!direccion) {
         return res.status(404).json({
           success: false,
-          message: 'Producto no encontrado'
+          message: 'Dirección no encontrada'
         });
       }
 
       // Extraer campos del body
       const {
-        nombre,
-        codigo_barras,
-        codigo_sat,
-        descripcion,
-        presentacion,
-        concentracion,
-        via_administracion,
-        id_laboratorio,
-        precio_venta,
-        cantidad_real,
-        temperatura_conservacion,
-        receta_medica,
-        clasificacion,
-        ficha_tecnica,
-        iva_aplicable,
-        costo_unitario,
-        principio_activo, 
-        stock_minimo,
-        stock_maximo,
-        imagen,
-        activo
+        calle,
+        numero_exterior,
+        numero_interior,
+        colonia,
+        municipio,
+        estado,
+        codigo_postal,
+        referencias,
       } = req.body;
 
       // Validaciones básicas
-      if (nombre !== undefined && (nombre === null || nombre.trim() === '')) {
+      if (calle !== undefined && (calle === null || calle.trim() === '')) {
         return res.status(400).json({
           success: false,
-          message: 'El nombre del producto no puede estar vacío'
+          message: 'La calle no puede estar vacía'
         });
       }
 
-      const laboratorio = await Laboratorio.findByPk(id_laboratorio);
-      if (!laboratorio && id_laboratorio !== undefined) {
+      if (numero_exterior !== undefined && (numero_exterior === null || numero_exterior.trim() === '')) {
         return res.status(400).json({
           success: false,
-          message: 'Laboratorio inexistente'
+          message: 'El número exterior no puede estar vacío'
         });
       }
 
-      if (id_laboratorio !== undefined && (id_laboratorio === null || id_laboratorio.trim() === '')) {
+      if (numero_interior !== undefined && (numero_interior === null || numero_interior.trim() === '')) {
         return res.status(400).json({
           success: false,
-          message: 'El nombre del laboratorio no puede estar vacío'
+          message: 'El número interior no puede estar vacío'
+        });
+      }
+      
+      if (colonia !== undefined && (colonia === null || colonia.trim() === '')) {
+        return res.status(400).json({
+          success: false,
+          message: 'La colonia no puede estar vacía'
         });
       }
 
-      if (precio_venta !== undefined && (isNaN(precio_venta) || precio_venta < 0)) {
+      if (municipio !== undefined && (municipio === null || municipio.trim() === '')) {
         return res.status(400).json({
           success: false,
-          message: 'El precio unitario debe ser un número válido y mayor o igual a cero'
+          message: 'El municipio no puede estar vacío'
         });
       }
 
-      if (cantidad_real !== undefined && (isNaN(cantidad_real) || cantidad_real < 0)) {
+      if (estado !== undefined && (estado === null || estado.trim() === '')) {
         return res.status(400).json({
           success: false,
-          message: 'La cantidad real debe ser un número válido y mayor o igual a cero'
+          message: 'El estado no puede estar vacío'
         });
       }
 
-      if (costo_unitario !== undefined && (isNaN(costo_unitario) || costo_unitario < 0)) {
+      if (codigo_postal !== undefined && isNaN(codigo_postal)) {
         return res.status(400).json({
           success: false,
-          message: 'El costo unitario debe ser un número válido y mayor o igual a cero'
-        });
-      }
-
-      if (iva_aplicable !== undefined && (isNaN(iva_aplicable) || iva_aplicable < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'El IVA aplicable debe ser un número válido y mayor o igual a cero'
-        });
-      }
-
-      if (stock_maximo !== undefined && (isNaN(stock_maximo) || stock_maximo < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'El stock máximo debe ser un número válido y mayor o igual a cero'
-        });
-      }
-
-      if (stock_minimo !== undefined && (isNaN(stock_minimo) || stock_minimo < 0)) {
-        return res.status(400).json({
-          success: false,
-          message: 'El stock mínimo debe ser un número válido y mayor o igual a cero'
+          message: 'El código postal debe ser un número válido'
         });
       }
 
       // Preparar objeto de actualización
       const updateData = {};
 
-      if (nombre !== undefined) updateData.nombre = capitalizeWords(nombre);
-      if (codigo_barras !== undefined) updateData.codigo_barras = codigo_barras;
-      if (codigo_sat !== undefined) updateData.codigo_sat = codigo_sat;
-      if (id_laboratorio !== undefined) updateData.id_laboratorio = id_laboratorio;
-      if (precio_venta !== undefined) updateData.precio_venta = precio_venta;
-      if (cantidad_real !== undefined) updateData.cantidad_real = cantidad_real;
-      if (temperatura_conservacion !== undefined) updateData.temperatura_conservacion = temperatura_conservacion;
-      if (receta_medica !== undefined) updateData.receta_medica = receta_medica;
-      if (clasificacion !== undefined) updateData.clasificacion = clasificacion;
-      if (ficha_tecnica !== undefined) updateData.ficha_tecnica = ficha_tecnica;
-      if (principio_activo !== undefined) updateData.principio_activo = principio_activo;
-      if (descripcion !== undefined) updateData.descripcion = descripcion;
-      if (concentracion !== undefined) updateData.concentracion = concentracion;
-      if (presentacion !== undefined) updateData.presentacion = presentacion;
-      if (via_administracion !== undefined) updateData.via_administracion = via_administracion;
-      if (imagen !== undefined) updateData.imagen = imagen;
-      if (costo_unitario !== undefined) updateData.costo_unitario = costo_unitario;
-      if (iva_aplicable !== undefined) updateData.iva_aplicable = iva_aplicable;
-      if (stock_maximo !== undefined) updateData.stock_maximo = stock_maximo;
-      if (stock_minimo !== undefined) updateData.stock_minimo = stock_minimo;
-      if (activo !== undefined) updateData.activo = activo;
-      
-      await producto.update(updateData);
+      if (calle !== undefined) updateData.calle = capitalizeWords(calle);
+      if (numero_exterior !== undefined) updateData.numero_exterior = numero_exterior;
+      if (numero_interior !== undefined) updateData.numero_interior = numero_interior;
+      if (colonia !== undefined) updateData.colonia = capitalizeWords(colonia);
+      if (municipio !== undefined) updateData.municipio = capitalizeWords(municipio);
+      if (estado !== undefined) updateData.estado = capitalizeWords(estado);
+
+      await direccion.update(updateData);
 
       res.status(200).json({
         success: true,
-        data: producto,
-        message: 'Producto actualizado correctamente'
+        data: direccion,
+        message: 'Dirección actualizada correctamente'
       });
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al actualizar el producto',
+        message: 'Error al actualizar la dirección',
         error: error.message
       });
     }
@@ -454,34 +341,35 @@ class DireccionController {
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
-  static async deleteProducto(req, res) {
+  static async deleteDireccion(req, res) {
     try {
       const { id } = req.params;
       
-      const producto = await Producto.findByPk(id);
+      const direccion = await Direccion.findByPk(id);
       
-      if (!producto) {
+      if (!direccion) {
         return res.status(404).json({
           success: false,
-          message: 'Producto no encontrado'
+          message: 'Dirección no encontrada'
         });
       }
-      
-      await producto.update({
-        activo : false})
+
+      await direccion.update({
+        activo : false
+      });
       
       res.status(200).json({
         success: true,
-        message: 'Producto eliminado correctamente'
+        message: 'Dirección eliminada correctamente'
       });
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al eliminar el producto',
+        message: 'Error al eliminar la dirección',
         error: error.message
       });
     }
   }
 }
 
-module.exports = ProductoController;
+module.exports = DireccionController;

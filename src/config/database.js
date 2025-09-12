@@ -69,7 +69,7 @@ Representante.belongsTo(Usuario, { foreignKey: 'id_usuario' });
 Interno.belongsTo(Usuario, { foreignKey: 'id_usuario' }); 
 
 Direccion.belongsTo(Cliente, { foreignKey: 'id_cliente' });
-Cliente.hasMany(Direccion, { foreignKey: 'id_direccion' });
+Cliente.hasMany(Direccion, { foreignKey: 'id_cliente' });
 
 Pedido.belongsTo(Cliente, { foreignKey: 'id_cliente' });
 Pedido.belongsTo(Medico, { foreignKey: 'id_medico' });
