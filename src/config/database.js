@@ -72,10 +72,10 @@ Direccion.belongsTo(Cliente, { foreignKey: 'id_cliente' });
 Cliente.hasMany(Direccion, { foreignKey: 'id_cliente' });
 
 Pedido.belongsTo(Cliente, { foreignKey: 'id_cliente' });
-Pedido.belongsTo(Medico, { foreignKey: 'id_medico' });
-Pedido.belongsTo(Representante, { foreignKey: 'id_representante' });
-Pedido.belongsTo(Paqueteria, { foreignKey: 'id_paqueteria' });
-Pedido.belongsTo(MetodoPago, { foreignKey: 'id_metodo_pago' });
+// Pedido.belongsTo(Medico, { foreignKey: 'id_medico' });
+// Pedido.belongsTo(Representante, { foreignKey: 'id_representante' });
+// Pedido.belongsTo(Paqueteria, { foreignKey: 'id_paqueteria' });
+// Pedido.belongsTo(MetodoPago, { foreignKey: 'id_metodo_pago' });
 
 DetallePedido.belongsTo(Pedido, { foreignKey: 'id_pedido' });
 DetallePedido.belongsTo(Producto, { foreignKey: 'id_producto' });

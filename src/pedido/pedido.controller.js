@@ -1,5 +1,6 @@
 require('dotenv').config();
-const { Pedido, Usuario } = require('../config/database.js');
+const { Client } = require('pg');
+const { Pedido, Cliente, Direccion , Usuario} = require('../config/database.js');
 const fs = require('fs').promises;
 const path = require('path');
 class PedidoController {
@@ -29,7 +30,7 @@ class PedidoController {
   }
 
   /**
-   * Busca laboratorios por nombre
+   * Busca pedidos por cliente
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
@@ -37,10 +38,19 @@ class PedidoController {
   static async getPedidosByUser(req, res) {
     try {
       const { id } = req.query;
+
+      const cliente = await Cliente.findByPk(id);
+      if (!cliente) {
+        return res.status(404).json({
+          success: false,
+          message: 'Cliente no encontrado'
+        });
+      }
+
       const pedidos = await Pedido.findAll({
         order: [['id_pedido', 'DESC']],
         where: {
-          id_usuario: id
+          id_cliente: id
         }
       });
 
@@ -51,14 +61,14 @@ class PedidoController {
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al buscar los pedidos',
+        message: 'Error al obtener los pedidos',
         error: error.message
       });
     }
   }
 
   /**
-   * Busca laboratorios por nombre
+   * Busca pedidos por ID
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
@@ -87,7 +97,7 @@ class PedidoController {
   }
 
   /**
-   * genera un nuevo pedido
+   * Genera un nuevo pedido
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
@@ -97,7 +107,7 @@ class PedidoController {
         id_cliente, //dentro de la sesión, no en formulario
         id_direccion_envio, //dentro de la sesión, en formulario (sin validación)
         // id_paqueteria, //Ejecutivo
-        estatus, //Ejecutivo
+        // estatus, //Ejecutivo
         forma_pago, //Formulario
         subtotal, //Se calcula de los pedidos
         // costo_envio, //Ejecutivo
@@ -105,9 +115,9 @@ class PedidoController {
         // guia_entrega, //Ejecutivo
         // factura, //Ejecutivo
         // notas_administrativas, //Ejecutivo
-        envio_contacto, //obtenido de id_cliente
-        envio_direccion, //obtenido de id_direccion_envio
-        envio_referencias,
+        // envio_contacto, //obtenido de id_cliente
+        // envio_direccion, //obtenido de id_direccion_envio
+        // envio_referencias, //obtenido de id_direccion_envio
         // envio_colonia,
         // envio_municipio,
         // envio_estado,
@@ -115,29 +125,46 @@ class PedidoController {
       } = req.body;
 
       // Operaciones antes de generar el pedido
-      const usuario = await Usuario.findByPk(id_cliente);
-      envio_contacto = `${usuario.nombre} ${usuario.apellido_paterno} ${usuario.apellido_materno} ${usuario.telefono}`;
+      const cliente = await Cliente.findByPk(id_cliente);
+      if (!cliente) {
+        return res.status(404).json({
+          success: false,
+          message: 'Cliente no encontrado'
+        });
+      }
 
+      const userpkey = cliente.id_usuario;
+      const user = await Usuario.findByPk(userpkey);
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: 'Usuario no encontrado'
+        });
+      }
+
+      let envio_contacto = `${user.nombre} ${user.apellido_paterno} ${user.apellido_materno} Tel. ${user.telefono}`;
+
+      let envio_direccion;
       const direccion = await Direccion.findByPk(id_direccion_envio);
-      if (!direccion.numero_interior) 
+      if (!direccion) {
+        return res.status(404).json({
+          success: false,
+          message: 'Dirección no encontrada'
+        });
+      }
+
+      if (direccion.numero_interior === null) 
         envio_direccion = `${direccion.calle} No. ${direccion.numero_exterior}, colonia ${direccion.colonia} C.P. ${direccion.codigo_postal}. ${direccion.municipio}, ${direccion.estado}`;
       else
         envio_direccion = `${direccion.calle} No. ${direccion.numero_exterior} Int. ${direccion.numero_interior}, colonia ${direccion.colonia} C.P. ${direccion.codigo_postal}. ${direccion.municipio}, ${direccion.estado}`;
 
-      envio_referencias = direccion.referencias;
+      let envio_referencias = direccion.referencias;
 
       const pedido = await Pedido.create({
         id_cliente,
         id_direccion_envio,
-        id_paqueteria,
-        estatus,
         forma_pago,
         subtotal,
-        costo_envio,
-        total,
-        guia_entrega,
-        factura,
-        notas_administrativas,
         envio_contacto,
         envio_direccion,
         envio_referencias
@@ -145,31 +172,31 @@ class PedidoController {
 
       res.status(201).json({
         success: true,
-        data: laboratorio
+        data: pedido
       });
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al crear el laboratorio',
+        message: 'Error al generar el pedido',
         error: error.message
       });
     }
   }
 
   /**
-   * Actualiza un laboratorio existente
+   * Actualiza un pedido existente
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
   static async updatePedido(req, res) {
     try {
       const { id } = req.params;
-      const laboratorio = await Laboratorio.findByPk(id);
+      const pedido = await Pedido.findByPk(id);
 
-      if (!laboratorio) {
+      if (!pedido) {
         return res.status(404).json({
           success: false,
-          message: 'Laboratorio no encontrado'
+          message: 'Pedido no encontrado'
         });
       }
       // Extraer campos del body
@@ -200,48 +227,29 @@ class PedidoController {
   }
 
   /**
-   * Elimina un laboratorio por medio de softdelete
+   * Elimina un pedido por medio de softdelete
    * @param {Object} req - Objeto de solicitud Express
    * @param {Object} res - Objeto de respuesta Express
    */
   static async deletePedido(req, res) {
     try {
       const { id } = req.params;
-      const laboratorio = await Laboratorio.findByPk(id);
-      if (!laboratorio) {
+      const pedido = await Pedido.findByPk(id);
+      if (!pedido) {
         return res.status(404).json({
           success: false,
-          message: 'Laboratorio no encontrado'
+          message: 'Pedido no encontrado'
         });
       }
-
-      // Buscar si existe al menos un producto activo asociado a este laboratorio
-      const { Producto } = require('../config/database.js');
-      const productosActivos = await Producto.findOne({
-        where: {
-          id_laboratorio: id,
-          activo: true
-        }
-      });
-      if (productosActivos) {
-        return res.status(400).json({
-          success: false,
-          message: 'No se puede eliminar el laboratorio porque tiene productos activos asociados.'
-        });
-      }
-
-      await laboratorio.update({
-        activo: false
-      });
 
       res.status(200).json({
         success: true,
-        message: 'Laboratorio eliminado correctamente'
+        message: 'Pedido eliminado correctamente'
       });
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al eliminar el laboratorio',
+        message: 'Error al eliminar el pedido',
         error: error.message
       });
     }
