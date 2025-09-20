@@ -212,6 +212,12 @@ class UsuarioController {
       if (!email || email.trim() === '') {
         return res.status(400).json({ success: false, message: 'El correo electrónico es obligatorio' });
       }
+      if (!rfc || rfc.trim() === '') {
+        return res.status(400).json({ success: false, message: 'El RFC es obligatorio' });
+      }
+      if (!telefono || telefono.trim() === '') {
+        return res.status(400).json({ success: false, message: 'El teléfono es obligatorio' });
+      }
 
       //Validación de campos únicos
       email = email.toLowerCase();

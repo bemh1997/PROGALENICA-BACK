@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('DetallePedido', {
+  const DetallePedido = sequelize.define('DetallePedido', {
     id_detalle_pedido: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -40,4 +40,31 @@ module.exports = (sequelize) => {
     timestamps: false,
     tableName: 'detallespedido',
   });
+  
+  async function actualizarSubtotal(id_pedido) {
+    const { Pedido, DetallePedido } = sequelize.models;
+
+    const total = await DetallePedido.sum('total', {
+      where: { id_pedido }
+    });
+
+    await Pedido.update(
+      { subtotal: total || 0 },
+      { where: { id_pedido } }
+    );
+  }
+
+  DetallePedido.afterCreate(async (detalle, options) => {
+    await actualizarSubtotal(detalle.id_pedido);
+  });
+
+  DetallePedido.afterUpdate(async (detalle, options) => {
+    await actualizarSubtotal(detalle.id_pedido);
+  });
+
+  DetallePedido.afterDestroy(async (detalle, options) => {
+    await actualizarSubtotal(detalle.id_pedido);
+  });
+
+  return DetallePedido;
 };
