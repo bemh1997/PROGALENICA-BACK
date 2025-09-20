@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Client } = require('pg');
-const { Pedido, Cliente, Direccion , Usuario} = require('../config/database.js');
+const { Pedido, Cliente, Direccion, Usuario, DetallePedido, Producto } = require('../config/database.js');
 const fs = require('fs').promises;
 const path = require('path');
 class PedidoController {
@@ -13,7 +13,19 @@ class PedidoController {
     try {
       let pedidos = await Pedido.findAll({
         order: [['id_pedido', 'ASC']],
-        where: { activo: true }
+        where: { activo: true },
+        include: [
+          {
+            model: DetallePedido,
+            attributes: ['cantidad', 'total'],
+            include: [
+              {
+                model: Producto,
+                attributes: ['nombre', 'precio_venta', 'presentacion'],
+              },
+            ],
+          },
+        ],
       });
 
       res.status(200).json({
@@ -75,12 +87,22 @@ class PedidoController {
 
   static async getPedidoById(req, res) {
     try {
-      const { id } = req.query;
-      const pedido = await Pedido.finOne({
-        order: [['id_pedido', 'DESC']],
-        where: {
-          id_pedido: id
-        }
+      const { id } = req.params;
+      const pedido = await Pedido.findOne({
+        where: { id_pedido: id },
+        include: [
+          {
+            model: DetallePedido,
+            attributes: ['cantidad', 'total', 'id_producto'],
+            include: [
+              {
+                model: Producto,
+                // Selecciona los atributos que quieres mostrar del producto
+                attributes: ['nombre', 'precio_venta', 'presentacion'],
+              },
+            ],
+          },
+        ],
       });
 
       res.status(200).json({
@@ -109,7 +131,8 @@ class PedidoController {
         // id_paqueteria, //Ejecutivo
         // estatus, //Ejecutivo
         forma_pago, //Formulario
-        subtotal, //Se calcula de los pedidos
+        id_producto,
+        cantidad,
         // costo_envio, //Ejecutivo
         // total, // = subtotal + costo_envio
         // guia_entrega, //Ejecutivo
@@ -123,6 +146,33 @@ class PedidoController {
         // envio_estado,
         // envio_codigo_postal,
       } = req.body;
+
+      // Validaciones:
+      
+      const producto = await Producto.findByPk(id_producto);
+      if (!producto) {
+        return res.status(400).json({
+          success: false,
+          message: 'Producto inexistente'
+        });
+      }
+      
+      if (!cantidad ||  isNaN(cantidad) || parseInt(cantidad) <= 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'La cantidad es requerida y debe ser un número positivo'
+        });
+      }
+
+      const total = cantidad * producto.precio_venta;
+      const subtotal = total;
+
+      if (await DetallePedido.findOne({ where: { id_producto: id_producto} })){
+        return res.status(400).json({
+          success: false,
+          message: 'Producto ya ingresado para este detalle de pedido'
+        });
+      }
 
       // Operaciones antes de generar el pedido
       const cliente = await Cliente.findByPk(id_cliente);
@@ -170,9 +220,20 @@ class PedidoController {
         envio_referencias
       });
 
+      const detalle = await DetallePedido.create({
+        id_pedido: pedido.id_pedido,
+        id_producto,
+        cantidad,
+        total
+      });
+
       res.status(201).json({
         success: true,
-        data: pedido
+        data: {
+          pedido: pedido,
+          detalle: detalle
+        },
+        message: 'Pedido creado correctamente'
       });
     } catch (error) {
       res.status(500).json({
@@ -199,28 +260,41 @@ class PedidoController {
           message: 'Pedido no encontrado'
         });
       }
-      // Extraer campos del body
-      const {nombre} = req.body;
-      // Validaciones básicas
-      if (nombre !== undefined && (nombre === null || nombre.trim() === '')) {
-        return res.status(400).json({
-          success: false,
-          message: 'El nombre del laboratorio no puede estar vacío'
-        });
-      }
 
-      await laboratorio.update({ nombre });
+      const {
+        estatus,
+        id_paqueteria,
+        costo_envio,
+        guia_entrega,
+        factura,
+        notas_administrativas,
+        activo
+      } = req.body;
+
+      const updateData = {};
+
+      if (estatus !== undefined) updateData.estatus = estatus;
+      if (id_paqueteria !== undefined) updateData.id_paqueteria = id_paqueteria;
+      if (costo_envio !== undefined) updateData.costo_envio = costo_envio;
+      if (guia_entrega !== undefined) updateData.guia_entrega = guia_entrega;
+      if (factura !== undefined) updateData.factura = factura;
+      if (notas_administrativas !== undefined) updateData.notas_administrativas = notas_administrativas;
+      if (activo !== undefined) updateData.activo = activo;
+
+      // Aquí se podrían agregar validaciones más complejas si es necesario
+
+      await pedido.update(updateData);
 
       res.status(200).json({
         success: true,
-        data: laboratorio,
-        message: 'Laboratorio actualizado correctamente'
+        data: pedido,
+        message: 'Pedido actualizado correctamente'
       });
     } 
     catch (error) {
       res.status(500).json({
         success: false,
-        message: 'Error al actualizar el laboratorio',
+        message: 'Error al actualizar el pedido',
         error: error.message
       });
     }
@@ -241,6 +315,10 @@ class PedidoController {
           message: 'Pedido no encontrado'
         });
       }
+
+      await pedido.update({
+        activo: false
+      });
 
       res.status(200).json({
         success: true,
