@@ -215,7 +215,7 @@ class UsuarioController {
       if (!rfc || rfc.trim() === '') {
         return res.status(400).json({ success: false, message: 'El RFC es obligatorio' });
       }
-      if (!telefono || telefono.trim() === '') {
+      if (!telefono ) {
         return res.status(400).json({ success: false, message: 'El teléfono es obligatorio' });
       }
 
