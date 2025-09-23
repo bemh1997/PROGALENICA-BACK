@@ -8,19 +8,19 @@ const { verifyToken, isAdmin, isOwnerOrAdmin} = require('../utils/auth.middlewar
 router.post('/', DireccionController.createDireccion);
 
 // Actualizar una dirección existente (acceso para admin o dueño de la dirección)
-router.put('/:id', verifyToken, isOwnerOrAdmin, DireccionController.updateDireccion);
+router.put('/:id', /*verifyToken, isOwnerOrAdmin,*/ DireccionController.updateDireccion);
 
 //Acceso solo para administradores
 // Buscar direcciones por id de usuario
 router.get('/search', DireccionController.getDireccionesByCliente);
 
 // Obtener todas las direcciones PERMISOS DE ADMINISTRADOR
-router.get('/', verifyToken, isAdmin, DireccionController.getAllDirecciones);
+router.get('/', /*verifyToken, isAdmin,*/ DireccionController.getAllDirecciones);
 
 // Buscar direcciones por id de usuario
-router.get('/:id', verifyToken, isAdmin, DireccionController.getDireccionById);
+router.get('/:id', /*verifyToken, isAdmin,*/ DireccionController.getDireccionById);
 
 // Eliminar una dirección
-router.delete('/:id', verifyToken, isAdmin, DireccionController.deleteDireccion);
+router.delete('/:id', /*verifyToken, isAdmin,*/ DireccionController.deleteDireccion);
 
 module.exports = router;
