@@ -85,10 +85,10 @@ class DetalleController {
 
       const detalles = await DetallePedido.findAll({
         where: {
-          id_cliente: id_cliente,
+          id_pedido: id_pedido,
           activo: true
         },
-        order: [['id_detalle_pedido', 'DESC']]
+        // order: [['id_detalle_pedido', 'DESC']]
       });
 
       res.status(200).json({
